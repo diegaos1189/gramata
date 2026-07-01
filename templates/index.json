@@ -11,33 +11,10 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
+        "image": "shopify://shop_images/slideweb2025-1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
@@ -69,6 +46,7 @@
         "heading",
         "text"
       ],
+      "disabled": true,
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -84,6 +62,7 @@
         "collection": "destacados",
         "products_to_show": 10,
         "eyebrow": "Selección de la librería",
+        "eyebrow_size": 16,
         "title": "",
         "heading_size": "h2",
         "heading_color": "",
@@ -117,6 +96,7 @@
         "collection": "editorial-planeta",
         "products_to_show": 10,
         "eyebrow": "Selección de la librería",
+        "eyebrow_size": 16,
         "title": "Featured collection",
         "heading_size": "h1",
         "heading_color": "",
