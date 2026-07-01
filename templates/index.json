@@ -82,7 +82,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "destacados",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "eyebrow": "Selección de la librería",
         "title": "Featured products",
         "heading_size": "h2",
