@@ -118,6 +118,54 @@
     --color-button: 255, 255, 255;
     --color-button-text: 18, 18, 18;
   }
+
+  /* Premium menu styling */
+  .header__inline-menu > .list-menu--inline > li > .header__menu-item,
+  .header__inline-menu > .list-menu--inline > li > header-menu > details > summary.header__menu-item {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.3rem;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .header__inline-menu > .list-menu--inline > li {
+    margin: 0 0.6rem;
+  }
+
+  .header__inline-menu > .list-menu--inline > li > .header__menu-item::after,
+  .header__inline-menu > .list-menu--inline > li > header-menu > details > summary.header__menu-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.4rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .header__inline-menu > .list-menu--inline > li > .header__menu-item:hover::after,
+  .header__inline-menu > .list-menu--inline > li > header-menu > details[open] > summary.header__menu-item::after {
+    transform: scaleX(1);
+  }
+
+  .header__inline-menu .header__active-menu-item {
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+
+  .header__icons .icon,
+  .header__icons svg {
+    transition: opacity 0.2s ease;
+  }
+
+  .header__icon:hover .icon,
+  .header__icon:hover svg {
+    opacity: 0.65;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
