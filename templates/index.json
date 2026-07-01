@@ -128,7 +128,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "editorial-grammata",
-        "products_to_show": 10,
+        "products_to_show": 15,
         "eyebrow": "Selección de la librería",
         "eyebrow_size": 16,
         "title": "Featured collection",
@@ -139,7 +139,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
