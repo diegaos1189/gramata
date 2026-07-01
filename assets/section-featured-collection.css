@@ -43,22 +43,6 @@
   background: rgba(var(--color-button), 0.6);
 }
 
-.featured-collection--premium .card-wrapper {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.featured-collection--premium .card-wrapper .card {
-  transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.featured-collection--premium .grid__item:hover .card-wrapper {
-  transform: translateY(-0.8rem);
-}
-
-.featured-collection--premium .grid__item:hover .card-wrapper .card {
-  box-shadow: 0 2.4rem 3.2rem -1.6rem rgba(var(--color-foreground), 0.45);
-}
-
 @media screen and (max-width: 749px) {
   .featured-collection__divider::before,
   .featured-collection__divider::after {
