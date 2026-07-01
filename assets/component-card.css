@@ -294,7 +294,6 @@
   object-fit: cover;
   object-position: center center;
   width: 100%;
-  transform: scale(1.18);
 }
 
 .card__inner:not(.ratio) > .card__content {
@@ -389,7 +388,7 @@
 
   .card:hover .media.media--hover-effect > img:first-child:only-child,
   .card-wrapper:hover .media.media--hover-effect > img:first-child:only-child {
-    transform: scale(1.18);
+    transform: scale(1.08);
   }
 
   .card-wrapper:hover .media.media--hover-effect > img:first-child:not(:only-child) {
@@ -399,7 +398,7 @@
   .card-wrapper:hover .media.media--hover-effect > img + img {
     opacity: 1;
     transition: transform var(--duration-long) ease;
-    transform: scale(1.18);
+    transform: scale(1.08);
   }
 
   .underline-links-hover:hover a {
