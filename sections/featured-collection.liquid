@@ -75,7 +75,10 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.eyebrow != blank -%}
-        <span class="featured-collection__eyebrow"{% if section.settings.accent_color != blank %} style="color: {{ section.settings.accent_color }};"{% endif %}>
+        <span
+          class="featured-collection__eyebrow"
+          style="font-size: {{ section.settings.eyebrow_size }}px;{% if section.settings.accent_color != blank %} color: {{ section.settings.accent_color }};{% endif %}"
+        >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M3 5.5c2.5-1.4 5.4-1.4 9 0v13c-3.6-1.4-6.5-1.4-9 0v-13Z" />
             <path d="M21 5.5c-2.5-1.4-5.4-1.4-9 0v13c3.6-1.4 6.5-1.4 9 0v-13Z" />
@@ -122,7 +125,7 @@
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
+        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
@@ -273,6 +276,16 @@
       "id": "eyebrow",
       "default": "Selección de la librería",
       "label": "Texto superior (eyebrow)"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "label": "Tamaño del texto superior"
     },
     {
       "type": "inline_richtext",
