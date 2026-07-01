@@ -59,7 +59,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "destacados",
+        "collection": "libreria-online",
         "products_to_show": 10,
         "eyebrow": "Selección de la librería",
         "eyebrow_size": 16,
