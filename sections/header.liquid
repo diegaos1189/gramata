@@ -98,6 +98,26 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .section-header:has(.header-wrapper--transparent):not(.scrolled-past-header) {
+    position: absolute;
+    top: var(--announcement-bar-height, 0px);
+    left: 0;
+    right: 0;
+    z-index: 5;
+  }
+
+  .header-wrapper--transparent {
+    transition: background-color 0.3s ease;
+  }
+
+  .section-header:not(.scrolled-past-header) .header-wrapper--transparent {
+    background: transparent !important;
+    border-bottom-color: transparent !important;
+    --color-foreground: 255, 255, 255;
+    --color-button: 255, 255, 255;
+    --color-button-text: 18, 18, 18;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -116,13 +136,18 @@
   if section.settings.sticky_header_type != 'none'
     assign header_tag = 'sticky-header'
   endif
+
+  assign header_is_transparent = false
+  if section.settings.transparent_header and template.name == 'index'
+    assign header_is_transparent = true
+  endif
 %}
 
 <{{ header_tag }}
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if header_is_transparent %} header-wrapper--transparent{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -424,6 +449,18 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+  function setAnnouncementBarHeightVar() {
+    var header = document.querySelector('.section-header');
+    if (!header) return;
+    var announcementBar = header.previousElementSibling;
+    var height = announcementBar ? announcementBar.offsetHeight : 0;
+    document.documentElement.style.setProperty('--announcement-bar-height', height + 'px');
+  }
+  window.addEventListener('resize', setAnnouncementBarHeightVar);
+  document.addEventListener('DOMContentLoaded', setAnnouncementBarHeightVar);
+  document.addEventListener('shopify:section:load', setAnnouncementBarHeightVar);
+  setAnnouncementBarHeightVar();
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -562,6 +599,13 @@
       ],
       "default": "on-scroll-up",
       "label": "t:sections.header.settings.sticky_header_type.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "default": false,
+      "label": "Menú transparente sobre el banner (solo inicio)",
+      "info": "El menú flota transparente sobre el primer banner del inicio y se vuelve sólido al hacer scroll."
     },
     {
       "type": "checkbox",
