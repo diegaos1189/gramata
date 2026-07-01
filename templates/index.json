@@ -110,7 +110,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "editorial-grammata",
+        "collection": "editorial-penguin",
         "products_to_show": 10,
         "eyebrow": "Selección de la librería",
         "eyebrow_size": 16,
