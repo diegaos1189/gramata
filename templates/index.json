@@ -115,7 +115,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "editorial-planeta",
-        "products_to_show": 4,
+        "products_to_show": 10,
         "eyebrow": "Selección de la librería",
         "title": "Featured collection",
         "heading_size": "h1",
@@ -125,7 +125,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
