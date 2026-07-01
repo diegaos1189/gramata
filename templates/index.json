@@ -72,8 +72,9 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
+        "eyebrow": "Selección de la librería",
+        "title": "Novedades literarias",
+        "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
