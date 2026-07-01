@@ -1,1 +1,28 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"image_hP7fN8":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/logo-grammata-yras2_ca0bab4d-8b45-4ac5-b9ee-a5bee6b238e9.png","image_width":120,"alignment":"center"}},"link_list_eFDeG7":{"type":"link_list","settings":{"heading":"Libros por categoría","menu":"libros-por-categor-a"}},"text_6FjwN4":{"type":"text","settings":{"heading":"Librerías","subtext":"<ul><li>Estadio: Calle 49b # 75-33<\/li><li>Laureles: Carrera 76 # 73B - 40<\/li><li>CONFIAR<\/li><li>Bello Calle 49 #49-32, Barrio Santander<\/li><li>ITM Robledo<br\/><\/li><\/ul><p>Llámanos: (604)5005855<\/p><p>Email: grammatatextos@gmail.com<\/p>"}},"text_kppJEx":{"type":"text","settings":{"heading":"Horarios","subtext":"<p>Lunes y Martes: 11:00 AM a 7:30 PM<br\/>Miércoles a Viernes: 10:00 a.m. a 7:30 p.m.<br\/>Sábados: 10:00 AM a 4:00<\/p>"}}},"block_order":["image_hP7fN8","link_list_eFDeG7","text_6FjwN4","text_kppJEx"],"settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"<strong>Suscríbete a nuestro newsletter y recibe novedades<\/strong>","enable_follow_on_shop":false,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
