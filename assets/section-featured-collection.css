@@ -1,3 +1,7 @@
+.featured-collection--premium .collection__title {
+  text-align: center;
+}
+
 .featured-collection__eyebrow {
   display: flex;
   align-items: center;
@@ -29,7 +33,7 @@
   content: '';
   height: 1px;
   width: 4.8rem;
-  background: rgba(var(--color-button), 0.35);
+  background: var(--featured-collection-accent, rgba(var(--color-button), 0.35));
 }
 
 .featured-collection__divider-mark {

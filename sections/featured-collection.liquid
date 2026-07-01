@@ -75,7 +75,7 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.eyebrow != blank -%}
-        <span class="featured-collection__eyebrow">
+        <span class="featured-collection__eyebrow"{% if section.settings.accent_color != blank %} style="color: {{ section.settings.accent_color }};"{% endif %}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M3 5.5c2.5-1.4 5.4-1.4 9 0v13c-3.6-1.4-6.5-1.4-9 0v-13Z" />
             <path d="M21 5.5c-2.5-1.4-5.4-1.4-9 0v13c3.6-1.4 6.5-1.4 9 0v-13Z" />
@@ -84,13 +84,26 @@
         </span>
       {%- endif -%}
       {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2
+          class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if section.settings.heading_color != blank %}
+            style="color: {{ section.settings.heading_color }};"
+          {% endif %}
+        >
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
-      <div class="featured-collection__divider" aria-hidden="true">
-        <span class="featured-collection__divider-mark"></span>
-      </div>
+      {%- if section.settings.show_divider -%}
+        <div
+          class="featured-collection__divider"
+          aria-hidden="true"
+          {% if section.settings.accent_color != blank %}
+            style="--featured-collection-accent: {{ section.settings.accent_color }};"
+          {% endif %}
+        >
+          <span class="featured-collection__divider-mark"{% if section.settings.accent_color != blank %} style="background: {{ section.settings.accent_color }};"{% endif %}></span>
+        </div>
+      {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
         and section.settings.collection.description != empty
@@ -294,6 +307,22 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color del título"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": true,
+      "label": "Mostrar separador bajo el título"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento (eyebrow, ícono, separador)"
     },
     {
       "type": "richtext",
