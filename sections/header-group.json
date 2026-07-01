@@ -5,7 +5,7 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "show_line_separator": true,
         "show_social": false,
         "auto_rotate": false,
@@ -19,7 +19,7 @@
           "settings": {
             "text": "Welcome to our store",
             "text_alignment": "center",
-            "color_scheme": "scheme-1",
+            "color_scheme": "scheme-3",
             "link": ""
           }
         }
@@ -33,7 +33,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "menu_color_scheme": "scheme-1",
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
@@ -43,8 +43,8 @@
         "enable_customer_avatar": true,
         "mobile_logo_position": "center",
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     }
   },

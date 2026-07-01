@@ -39,6 +39,36 @@
         "show_text_below": false
       }
     },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Crafted with care",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece is chosen for its quality and lasting design.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -70,6 +100,7 @@
   },
   "order": [
     "image_banner",
+    "rich_text",
     "featured_collection"
   ]
 }
