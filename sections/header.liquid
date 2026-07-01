@@ -124,7 +124,7 @@
   .header__inline-menu > .list-menu--inline > li > header-menu > details > summary.header__menu-item {
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    font-size: 1.2rem;
+    font-size: {{ section.settings.menu_font_size }}px;
     font-weight: 500;
     position: relative;
   }
@@ -599,6 +599,16 @@
       "id": "menu",
       "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "range",
+      "id": "menu_font_size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 12,
+      "label": "Tamaño de letra del menú"
     },
     {
       "type": "select",
