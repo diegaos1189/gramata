@@ -1,0 +1,262 @@
+{% comment %}
+  Barra de anuncios en movimiento (marquesina).
+  Adaptado de theme_export__icarolibros-com-dawn-icaro-v1.
+{% endcomment %}
+
+<div class="announcement-ticker-wrapper-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="announcement-ticker-{{ section.id }}">
+    <div class="announcement-ticker__content-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="announcement-ticker__item-{{ section.id }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <span class="announcement-ticker__icon-{{ section.id }}">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <span class="announcement-ticker__text-{{ section.id }}">{{ block.settings.text }}</span>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="announcement-ticker__link-{{ section.id }}">
+              {{ block.settings.link_text }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+      {%- for block in section.blocks -%}
+        <div class="announcement-ticker__item-{{ section.id }}" aria-hidden="true">
+          {%- if block.settings.icon != blank -%}
+            <span class="announcement-ticker__icon-{{ section.id }}">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <span class="announcement-ticker__text-{{ section.id }}">{{ block.settings.text }}</span>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="announcement-ticker__link-{{ section.id }}">
+              {{ block.settings.link_text }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .announcement-ticker-wrapper-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .announcement-ticker-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .announcement-ticker__content-{{ section.id }} {
+    display: flex;
+    animation: scroll-ticker-{{ section.settings.direction }}-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+    will-change: transform;
+  }
+
+  .announcement-ticker__item-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 4rem;
+    font-family: var(--font-body-family);
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+  }
+
+  .announcement-ticker__icon-{{ section.id }} {
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+  }
+
+  .announcement-ticker__text-{{ section.id }} {
+    margin-right: 0.5rem;
+  }
+
+  .announcement-ticker__link-{{ section.id }} {
+    color: inherit;
+    text-decoration: underline;
+    margin-left: 0.5rem;
+  }
+
+  .announcement-ticker__link-{{ section.id }}:hover {
+    opacity: 0.8;
+  }
+
+  {%- if section.settings.pause_on_hover -%}
+  .announcement-ticker-{{ section.id }}:hover .announcement-ticker__content-{{ section.id }} {
+    animation-play-state: paused;
+  }
+  {%- endif -%}
+
+  @keyframes scroll-ticker-left-{{ section.id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-ticker-right-{{ section.id }} {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-ticker__item-{{ section.id }} {
+      font-size: {{ section.settings.font_size | times: 0.85 }}px;
+      padding: 0 2rem;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Barra anuncios en movimiento",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-3"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Dirección",
+      "options": [
+        { "value": "left", "label": "← Izquierda" },
+        { "value": "right", "label": "Derecha →" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "label": "Velocidad",
+      "default": 30,
+      "info": "Menor = más rápido"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño fuente",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Peso fuente",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medio" },
+        { "value": "600", "label": "Semi-negrita" },
+        { "value": "700", "label": "Negrita" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pausar al pasar mouse",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Espaciado superior",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Espaciado inferior",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Anuncio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono emoji",
+          "default": "📚"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto anuncio",
+          "default": "Nuevos títulos cada semana"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace opcional"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Texto enlace",
+          "default": "Ver novedades"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra anuncios en movimiento",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "📚",
+            "text": "Nuevos títulos cada semana",
+            "link_text": "Ver novedades"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "Envío a todo el país",
+            "link_text": ""
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "⭐",
+            "text": "Selección curada para lectores exigentes",
+            "link_text": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

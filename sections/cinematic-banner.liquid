@@ -1,0 +1,246 @@
+{% comment %}
+  Banner cinemático con overlay y zoom lento al hover.
+  Adaptado de theme_export__icarolibros-com-dawn-icaro-v1.
+{% endcomment %}
+
+{%- style -%}
+  .cinematic-hero-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+  }
+
+  .cinematic-hero-inner-{{ section.id }} {
+    max-width: {{ section.settings.banner_width }}px;
+    margin: auto;
+    border-radius: {{ section.settings.banner_radius }}px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18), 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .cinematic-media-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.banner_height }}px;
+    overflow: hidden;
+  }
+
+  .cinematic-media-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .cinematic-hero-{{ section.id }}:hover img {
+    transform: scale(1.08);
+  }
+
+  .cinematic-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0) 75%);
+  }
+
+  .cinematic-content-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    max-width: 520px;
+    color: white;
+    opacity: 0;
+    transform: translateY(-50%) translateY(40px);
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .cinematic-hero-{{ section.id }}.reveal .cinematic-content-{{ section.id }} {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .cinematic-title-{{ section.id }} {
+    font-family: var(--font-heading-family);
+    font-size: 58px;
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .cinematic-sub-{{ section.id }} {
+    font-family: var(--font-body-family);
+    font-size: 21px;
+    opacity: 0.9;
+    margin-bottom: 28px;
+  }
+
+  .cinematic-btn-{{ section.id }} {
+    display: inline-block;
+    background: white;
+    color: black;
+    padding: 16px 36px;
+    border-radius: 999px;
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cinematic-btn-{{ section.id }}:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .cinematic-media-{{ section.id }} {
+      height: 420px;
+    }
+
+    .cinematic-content-{{ section.id }} {
+      left: 30px;
+      right: 30px;
+    }
+
+    .cinematic-title-{{ section.id }} {
+      font-size: 36px;
+    }
+
+    .cinematic-sub-{{ section.id }} {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign widths = '375, 550, 750, 1100, 1500, 2000, 3000'
+  assign sizes = '(min-width: 1200px) 1400px, 100vw'
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+<section class="cinematic-hero-{{ section.id }}" id="hero-{{ section.id }}">
+  <div class="cinematic-hero-inner-{{ section.id }}">
+    <div class="cinematic-media-{{ section.id }}">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 3000
+          | image_tag:
+            width: section.settings.image.width,
+            height: section.settings.image.height,
+            sizes: sizes,
+            widths: widths,
+            loading: 'lazy',
+            fetchpriority: fetch_priority
+        }}
+      {%- else -%}
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+      <div class="cinematic-overlay-{{ section.id }}"></div>
+    </div>
+
+    <div class="cinematic-content-{{ section.id }}">
+      <h2 class="cinematic-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <p class="cinematic-sub-{{ section.id }}">{{ section.settings.text }}</p>
+      {%- if section.settings.button_label != blank -%}
+        <a class="cinematic-btn-{{ section.id }}" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var hero = document.getElementById('hero-{{ section.id }}');
+    if (!hero) return;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) hero.classList.add('reveal');
+        });
+      },
+      { threshold: 0.35 }
+    );
+    observer.observe(hero);
+  });
+
+  document.addEventListener('shopify:section:load', function () {
+    var hero = document.getElementById('hero-{{ section.id }}');
+    if (hero) hero.classList.add('reveal');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Banner cinemático",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Nueva colección",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "default": "Descubre lo último",
+      "label": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Comprar ahora",
+      "label": "Botón"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link botón"
+    },
+    {
+      "type": "range",
+      "id": "banner_width",
+      "min": 1000,
+      "max": 1800,
+      "step": 50,
+      "default": 1400,
+      "label": "Ancho banner"
+    },
+    {
+      "type": "range",
+      "id": "banner_height",
+      "min": 400,
+      "max": 900,
+      "step": 50,
+      "default": 550,
+      "label": "Altura banner"
+    },
+    {
+      "type": "range",
+      "id": "banner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 28,
+      "label": "Bordes redondeados"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner cinemático"
+    }
+  ]
+}
+{% endschema %}
