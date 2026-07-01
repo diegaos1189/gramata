@@ -89,9 +89,9 @@
       {%- if section.settings.title != blank -%}
         <h2
           class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if section.settings.heading_color != blank %}
+          {%- if section.settings.heading_color != blank %}
             style="color: {{ section.settings.heading_color }};"
-          {% endif %}
+          {%- endif %}
         >
           {{ section.settings.title }}
         </h2>
@@ -100,9 +100,9 @@
         <div
           class="featured-collection__divider"
           aria-hidden="true"
-          {% if section.settings.accent_color != blank %}
+          {%- if section.settings.accent_color != blank %}
             style="--featured-collection-accent: {{ section.settings.accent_color }};"
-          {% endif %}
+          {%- endif %}
         >
           <span class="featured-collection__divider-mark"{% if section.settings.accent_color != blank %} style="background: {{ section.settings.accent_color }};"{% endif %}></span>
         </div>
@@ -264,7 +264,7 @@
       "min": 2,
       "max": 25,
       "step": 1,
-      "default": 4,
+      "default": 8,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
     },     
     {
@@ -378,7 +378,7 @@
       "min": 1,
       "max": 6,
       "step": 1,
-      "default": 4,
+      "default": 5,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
     },
         {
@@ -448,7 +448,7 @@
           "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "adapt",
+      "default": "portrait",
       "label": "t:sections.featured-collection.settings.image_ratio.label"
     },
     {
