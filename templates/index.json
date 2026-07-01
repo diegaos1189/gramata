@@ -48,6 +48,18 @@
         "show_text_below": false
       }
     },
+    "cinematic_banner": {
+      "type": "cinematic-banner",
+      "settings": {
+        "heading": "Autor destacado del mes",
+        "text": "Descubrí su obra completa",
+        "button_label": "Ver colección",
+        "button_link": "shopify://collections/all",
+        "banner_width": 1400,
+        "banner_height": 550,
+        "banner_radius": 28
+      }
+    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -110,44 +122,76 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection_Q6YtBb": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
+    "collection_carousel": {
+      "type": "collection-carousel",
       "settings": {
+        "title": "Editorial Planeta",
+        "description": "Explorá el catálogo completo de esta editorial",
         "collection": "editorial-planeta",
         "products_to_show": 10,
-        "eyebrow": "Selección de la librería",
-        "title": "Featured collection",
-        "heading_size": "h1",
-        "heading_color": "",
-        "show_divider": true,
-        "accent_color": "",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 5,
-        "enable_desktop_slider": false,
-        "full_width": false,
+        "items_per_view": 4,
+        "show_controls": true,
         "show_view_all": true,
-        "view_all_style": "outline",
-        "color_scheme": "scheme-2",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "view_all_text": "Ver todos los productos",
+        "enable_autoplay": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "anuncio_bar": {
+      "type": "anuncio-bar",
+      "blocks": {
+        "item_1": {
+          "type": "announcement",
+          "settings": {
+            "icon": "📚",
+            "text": "Nuevos títulos cada semana",
+            "link": "",
+            "link_text": "Ver novedades"
+          }
+        },
+        "item_2": {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "Envío a todo el país",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "item_3": {
+          "type": "announcement",
+          "settings": {
+            "icon": "⭐",
+            "text": "Selección curada para lectores exigentes",
+            "link": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "direction": "left",
+        "speed": 30,
+        "font_size": 14,
+        "font_weight": "500",
+        "pause_on_hover": true,
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     }
   },
   "order": [
     "image_banner",
+    "cinematic_banner",
     "rich_text",
     "featured_collection",
-    "featured_collection_Q6YtBb"
+    "collection_carousel",
+    "anuncio_bar"
   ]
 }
