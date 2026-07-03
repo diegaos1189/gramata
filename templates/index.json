@@ -59,7 +59,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "libreria-online",
+        "collection": "libreria-online-1",
         "products_to_show": 10,
         "eyebrow": "Selección de la librería",
         "eyebrow_size": 16,
