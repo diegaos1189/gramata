@@ -162,7 +162,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "editorial-planeta",
-        "products_to_show": 10,
+        "products_to_show": 12,
         "eyebrow": "EDITORIALPLANETA",
         "eyebrow_size": 16,
         "title": "",
@@ -173,7 +173,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 5,
+        "columns_desktop": 6,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
