@@ -12,7 +12,7 @@
     "image_banner": {
       "type": "image-banner",
       "settings": {
-        "image": "shopify://shop_images/Recurso_1BANNERWEB.png",
+        "image": "shopify://shop_images/Recurso_2BANNERWEB.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
