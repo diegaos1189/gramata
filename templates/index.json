@@ -126,7 +126,7 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/718_desktop.jpg",
+        "image": "shopify://shop_images/738_desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -177,7 +177,7 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/10707f89-0e41-48f4-98fd-c3c3044d5df8___1613f13413205b29335e47efe671f62b.webp",
+        "image": "shopify://shop_images/1757979792326_WhatsApp_Image_2025-09-11_at_11.36.18.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
