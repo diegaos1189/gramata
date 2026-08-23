@@ -185,7 +185,7 @@
             "heading_size": "h1",
             "subheading": "",
             "button_label": "",
-            "link": "",
+            "link": "shopify://products/las-cadenas-del-rey-edicion-de-lujo",
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "middle-center",
@@ -197,24 +197,44 @@
         "slide_QtK8dN": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1767X390.png",
             "image_overlay_opacity": 0,
-            "heading": "Diapositiva de imagen",
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Cuenta la historia de tu marca a través de imágenes",
-            "button_label": "Etiqueta de botón",
-            "link": "",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://products/el-circulo-de-la-felicidad-paulo-coelho",
             "button_style_secondary": false,
-            "show_text_box": true,
+            "show_text_box": false,
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
             "color_scheme": ""
           }
+        },
+        "slide_YRB6QX": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1920X350.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
         }
       },
       "block_order": [
         "slide_awmTcH",
-        "slide_QtK8dN"
+        "slide_QtK8dN",
+        "slide_YRB6QX"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
