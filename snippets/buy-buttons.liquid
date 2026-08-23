@@ -69,6 +69,14 @@
             if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
               assign quantity_rule_soldout = true
             endif
+
+            assign is_preorder = false
+            if product.selected_or_first_available_variant.inventory_management == 'shopify'
+              and product.selected_or_first_available_variant.inventory_policy == 'continue'
+              and product.selected_or_first_available_variant.inventory_quantity <= 0
+              and quantity_rule_soldout == false
+              assign is_preorder = true
+            endif
           -%}
           <button
             id="ProductSubmitButton-{{ section_id }}"
@@ -87,6 +95,8 @@
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
+              {%- elsif is_preorder -%}
+                {{ 'products.product.preorder' | t }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
