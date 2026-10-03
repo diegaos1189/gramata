@@ -22,17 +22,49 @@
   .cinematic-media-{{ section.id }} {
     position: relative;
     width: 100%;
-    height: {{ section.settings.banner_height }}px;
     overflow: hidden;
+    {%- if section.settings.adapt_height and section.settings.image != blank -%}
+      padding-top: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+    {%- else -%}
+      height: {{ section.settings.banner_height }}px;
+    {%- endif -%}
   }
 
   .cinematic-media-{{ section.id }} img {
     width: 100%;
-    height: 100%;
+    {%- if section.settings.adapt_height and section.settings.image != blank -%}
+      position: absolute;
+      inset: 0;
+      height: 100%;
+    {%- else -%}
+      height: 100%;
+    {%- endif -%}
     object-fit: cover;
     object-position: center;
     transition: transform 6s cubic-bezier(0.19, 1, 0.22, 1);
   }
+
+  {%- if section.settings.image_mobile != blank -%}
+    .cinematic-media--mobile-{{ section.id }} {
+      display: none;
+    }
+
+    {%- if section.settings.adapt_height -%}
+      .cinematic-media--mobile-{{ section.id }} {
+        padding-top: {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%;
+      }
+    {%- endif -%}
+
+    @media (max-width: 749px) {
+      .cinematic-media--desktop-{{ section.id }} {
+        display: none;
+      }
+
+      .cinematic-media--mobile-{{ section.id }} {
+        display: block;
+      }
+    }
+  {%- endif -%}
 
   .cinematic-hero-{{ section.id }}:hover img {
     transform: scale(1.08);
@@ -93,9 +125,11 @@
   }
 
   @media (max-width: 768px) {
-    .cinematic-media-{{ section.id }} {
-      height: 420px;
-    }
+    {%- unless section.settings.adapt_height -%}
+      .cinematic-media-{{ section.id }} {
+        height: 420px;
+      }
+    {%- endunless -%}
 
     .cinematic-content-{{ section.id }} {
       left: 30px;
@@ -123,7 +157,7 @@
 
 <section class="cinematic-hero-{{ section.id }}" id="hero-{{ section.id }}">
   <div class="cinematic-hero-inner-{{ section.id }}">
-    <div class="cinematic-media-{{ section.id }}">
+    <div class="cinematic-media-{{ section.id }}{% if section.settings.image_mobile != blank %} cinematic-media--desktop-{{ section.id }}{% endif %}">
       {%- if section.settings.image != blank -%}
         {{
           section.settings.image
@@ -139,18 +173,39 @@
       {%- else -%}
         {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
-      <div class="cinematic-overlay-{{ section.id }}"></div>
-    </div>
-
-    <div class="cinematic-content-{{ section.id }}">
-      <h2 class="cinematic-title-{{ section.id }}">{{ section.settings.heading }}</h2>
-      <p class="cinematic-sub-{{ section.id }}">{{ section.settings.text }}</p>
-      {%- if section.settings.button_label != blank -%}
-        <a class="cinematic-btn-{{ section.id }}" href="{{ section.settings.button_link }}">
-          {{ section.settings.button_label }}
-        </a>
+      {%- if section.settings.heading != blank or section.settings.text != blank -%}
+        <div class="cinematic-overlay-{{ section.id }}"></div>
       {%- endif -%}
     </div>
+
+    {%- if section.settings.image_mobile != blank -%}
+      <div class="cinematic-media-{{ section.id }} cinematic-media--mobile-{{ section.id }}">
+        {{
+          section.settings.image_mobile
+          | image_url: width: 1500
+          | image_tag:
+            width: section.settings.image_mobile.width,
+            height: section.settings.image_mobile.height,
+            sizes: '100vw',
+            loading: 'lazy'
+        }}
+        {%- if section.settings.heading != blank or section.settings.text != blank -%}
+          <div class="cinematic-overlay-{{ section.id }}"></div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="cinematic-content-{{ section.id }}">
+        <h2 class="cinematic-title-{{ section.id }}">{{ section.settings.heading }}</h2>
+        <p class="cinematic-sub-{{ section.id }}">{{ section.settings.text }}</p>
+        {%- if section.settings.button_label != blank -%}
+          <a class="cinematic-btn-{{ section.id }}" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -187,6 +242,12 @@
       "label": "Imagen"
     },
     {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Imagen para móvil (opcional)",
+      "info": "Si la dejas vacía, se usa la imagen de escritorio recortada."
+    },
+    {
       "type": "text",
       "id": "heading",
       "default": "Nueva colección",
@@ -219,13 +280,20 @@
       "label": "Ancho banner"
     },
     {
+      "type": "checkbox",
+      "id": "adapt_height",
+      "default": true,
+      "label": "Adaptar altura a la imagen",
+      "info": "Muestra la imagen completa sin recortar, usando su proporción real. Desactívalo para fijar una altura manual."
+    },
+    {
       "type": "range",
       "id": "banner_height",
       "min": 400,
       "max": 900,
       "step": 50,
       "default": 550,
-      "label": "Altura banner"
+      "label": "Altura banner (solo si 'Adaptar altura' está desactivado)"
     },
     {
       "type": "range",

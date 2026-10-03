@@ -90,6 +90,12 @@
               {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
+                {%- when 'genre_badge' -%}
+                  {% render 'genre-badge', product: product, block: block %}
+                {%- when 'author_bio' -%}
+                  {%- if settings.show_author_bio -%}
+                    {% render 'author-bio', product: product, block: block %}
+                  {%- endif -%}
                 {%- when 'text' -%}
                   <p
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
@@ -105,6 +111,7 @@
                         {{ product.title | escape }}
                       </h2>
                     </a>
+                    {% render 'wishlist-button', product: product %}
                   </div>
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -761,6 +768,14 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "genre_badge",
+      "name": "Insignia de género"
+    },
+    {
+      "type": "author_bio",
+      "name": "Bio del autor"
     },
     {
       "type": "text",

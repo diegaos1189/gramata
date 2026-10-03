@@ -1,0 +1,14 @@
+{
+  "name": "gramata-theme",
+  "private": true,
+  "scripts": {
+    "check": "shopify theme check",
+    "format": "prettier --write \"**/*.{liquid,json,css,js}\""
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3",
+    "@shopify/theme-check-node": "^3",
+    "prettier": "^3",
+    "prettier-plugin-liquid": "^1"
+  }
+}

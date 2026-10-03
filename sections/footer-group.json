@@ -12,39 +12,30 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer",
+      "type": "footer-brutal",
       "blocks": {
-        "brand": {
-          "type": "brand_information",
+        "links": {
+          "type": "links",
           "settings": {
-            "show_social": true
+            "heading": "Enlaces",
+            "menu": "footer"
           }
         },
-        "quick_links": {
-          "type": "link_list",
+        "newsletter": {
+          "type": "newsletter",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Únete al club de lectura"
           }
         }
       },
       "block_order": [
-        "brand",
-        "quick_links"
+        "links",
+        "newsletter"
       ],
       "settings": {
-        "color_scheme": "scheme-3",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 60,
-        "padding_bottom": 40
+        "tagline": "Historias que se quedan contigo.",
+        "color_scheme": "scheme-4",
+        "payment_enable": true
       }
     }
   },

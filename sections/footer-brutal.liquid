@@ -1,0 +1,205 @@
+{% comment %}
+  Footer compacto con tarjetas de tilt 3D al hover.
+{% endcomment %}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'section-footer-brutal.css' | asset_url | stylesheet_tag }}
+
+<footer class="footer-brutal color-{{ section.settings.color_scheme }} gradient">
+  <div class="footer-brutal__container page-width">
+    <div class="footer-brutal__grid">
+      <div class="footer-brutal__card footer-brutal__card--brand">
+        <div class="footer-brutal__card-inner">
+          {%- if settings.logo != blank -%}
+            <img
+              class="footer-brutal__logo"
+              src="{{ settings.logo | image_url: width: 200 }}"
+              alt="{{ shop.name }}"
+              width="{{ settings.logo.width }}"
+              height="{{ settings.logo.height }}"
+              loading="lazy"
+            >
+          {%- else -%}
+            <p class="footer-brutal__shop-name">{{ shop.name }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.tagline != blank -%}
+            <p class="footer-brutal__tagline">{{ section.settings.tagline }}</p>
+          {%- endif -%}
+
+          {%- liquid
+            assign has_social_icons = true
+            if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+              assign has_social_icons = false
+            endif
+          -%}
+          {%- if has_social_icons -%}
+            <ul class="footer-brutal__social list-social" role="list">
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                    {{- 'icon-instagram.svg' | inline_asset_content -}}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                    {{- 'icon-facebook.svg' | inline_asset_content -}}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tiktok_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
+                    {{- 'icon-tiktok.svg' | inline_asset_content -}}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
+                    {{- 'icon-youtube.svg' | inline_asset_content -}}
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'links' -%}
+            <div class="footer-brutal__card" {{ block.shopify_attributes }}>
+              <div class="footer-brutal__card-inner">
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="footer-brutal__heading">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.menu != blank -%}
+                  <ul class="footer-brutal__links" role="list">
+                    {%- for link in block.settings.menu.links -%}
+                      <li><a href="{{ link.url }}" class="footer-brutal__link link">{{ link.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- when 'text' -%}
+            <div class="footer-brutal__card" {{ block.shopify_attributes }}>
+              <div class="footer-brutal__card-inner">
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="footer-brutal__heading">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="footer-brutal__text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- when 'newsletter' -%}
+            <div class="footer-brutal__card" {{ block.shopify_attributes }}>
+              <div class="footer-brutal__card-inner">
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="footer-brutal__heading">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {% form 'customer', class: 'newsletter-form' %}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <div class="newsletter-form__field-wrapper">
+                    <div class="field">
+                      <input
+                        id="FooterNewsletter-{{ section.id }}"
+                        type="email"
+                        name="contact[email]"
+                        class="field__input"
+                        value="{{ form.email }}"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="email"
+                        placeholder="{{ 'newsletter.label' | t }}"
+                        required
+                      >
+                      <label class="field__label" for="FooterNewsletter-{{ section.id }}">{{ 'newsletter.label' | t }}</label>
+                      <button type="submit" class="newsletter-form__button field__button" name="commit">
+                        <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                      </button>
+                    </div>
+                    {%- if form.posted_successfully? -%}
+                      <p class="footer-brutal__success">{{ 'newsletter.success' | t }}</p>
+                    {%- endif -%}
+                  </div>
+                {% endform %}
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="footer-brutal__bottom">
+      <p class="footer-brutal__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+      </p>
+      {%- if section.settings.payment_enable -%}
+        <ul class="list list-payment" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="list-payment__item">
+              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer brutal (3D)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Frase de marca",
+      "default": "Historias que se quedan contigo."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "label": "Mostrar íconos de pago",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "links",
+      "name": "Menú de enlaces",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Enlaces" },
+        { "type": "link_list", "id": "menu", "label": "Menú", "default": "footer" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Texto / contacto",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Contacto" },
+        { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>ventas@grammata.com</p>" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Suscripción",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Únete al club de lectura" }
+      ]
+    }
+  ]
+}
+{% endschema %}

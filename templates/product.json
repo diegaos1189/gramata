@@ -19,6 +19,10 @@
             "text_style": "uppercase"
           }
         },
+        "genre_badge": {
+          "type": "genre_badge",
+          "settings": {}
+        },
         "title": {
           "type": "title",
           "settings": {}
@@ -49,6 +53,10 @@
           "type": "description",
           "settings": {}
         },
+        "author_bio": {
+          "type": "author_bio",
+          "settings": {}
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -58,12 +66,14 @@
       },
       "block_order": [
         "vendor",
+        "genre_badge",
         "title",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "description",
+        "author_bio",
         "share"
       ],
       "settings": {
@@ -82,6 +92,29 @@
         "padding_bottom": 12
       }
     },
+    "trust-badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge-1": {
+          "type": "badge",
+          "settings": { "heading": "Envío a todo Colombia", "text": "Recíbelo donde estés" }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": { "heading": "Pago 100% seguro", "text": "Tarjetas, PSE y contraentrega" }
+        },
+        "badge-3": {
+          "type": "badge",
+          "settings": { "heading": "Cambios y devoluciones", "text": "Hasta 30 días" }
+        }
+      },
+      "block_order": ["badge-1", "badge-2", "badge-3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
     "disclosures": {
       "type": "disclosures",
       "settings": {
@@ -91,6 +124,19 @@
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 0
+      }
+    },
+    "frequently-bought-together": {
+      "type": "frequently-bought-together",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "heading": "Frecuentemente comprados juntos",
+        "heading_size": "h1",
+        "button_label": "Agregar seleccionados al carrito",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 28
       }
     },
     "related-products": {
@@ -114,7 +160,9 @@
   },
   "order": [
     "main",
+    "trust-badges",
     "disclosures",
+    "frequently-bought-together",
     "related-products"
   ]
 }

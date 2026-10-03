@@ -1,0 +1,41 @@
+/* Zoom suave en imagen principal de producto al pasar el mouse */
+.card__media {
+  overflow: hidden;
+}
+
+.card__media .media img {
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover .card__media .media img,
+.card-wrapper:hover .card__media .media img {
+  transform: scale(1.06);
+}
+
+/* Subrayado animado en títulos de producto */
+.card__heading a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.35s ease;
+}
+
+.card__heading a:hover {
+  background-size: 100% 1px;
+}
+
+/* Botones con transición más suave y elegante */
+.button,
+.shopify-payment-button__button--unbranded {
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Cabeceras de sección con más presencia */
+.title-wrapper-with-link .title,
+.collection-hero__title {
+  letter-spacing: -0.01em;
+}

@@ -9,51 +9,40 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "cinematic_hero": {
+      "type": "cinematic-banner",
       "settings": {
         "image": "shopify://shop_images/1600X400_4x-8.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://collections/libreria-online-1",
+        "banner_width": 1400,
+        "banner_height": 600,
+        "banner_radius": 24
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "trust_badges": {
+      "type": "trust-badges",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Crafted with care",
-            "heading_size": "h1"
-          }
+        "badge-1": {
+          "type": "badge",
+          "settings": { "heading": "Envío a todo Colombia", "text": "Recíbelo donde estés" }
         },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Every piece is chosen for its quality and lasting design.</p>"
-          }
+        "badge-2": {
+          "type": "badge",
+          "settings": { "heading": "Pago 100% seguro", "text": "Tarjetas, PSE y contraentrega" }
+        },
+        "badge-3": {
+          "type": "badge",
+          "settings": { "heading": "Cambios y devoluciones", "text": "Hasta 30 días" }
         }
       },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "disabled": true,
+      "block_order": ["badge-1", "badge-2", "badge-3"],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
         "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 64,
-        "padding_bottom": 64
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "featured_collection": {
@@ -89,37 +78,26 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection_TbPEKV": {
-      "type": "featured-collection",
+    "collection_carousel_editorial": {
+      "type": "collection-carousel",
       "settings": {
+        "title": "Editorial Grammata",
+        "description": "Nuestras propias ediciones, cuidadas hasta el último detalle",
+        "title_size": 40,
+        "description_size": 18,
         "collection": "editorial-grammata",
-        "products_to_show": 12,
-        "eyebrow": "EDITORIAL GRAMMATA",
-        "eyebrow_size": 20,
-        "title": "",
-        "heading_size": "h2",
-        "heading_color": "",
-        "show_divider": true,
-        "accent_color": "",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 6,
-        "enable_desktop_slider": false,
-        "full_width": false,
+        "products_to_show": 10,
+        "items_per_view": 4,
+        "show_controls": true,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "view_all_text": "Ver toda la colección",
+        "enable_autoplay": true,
+        "autoplay_speed": 5000,
+        "accent_color": "#6B2737",
+        "text_color": "#2B2620",
+        "background_color": "#FAF6F0",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "slideshow_NDLNgw": {
@@ -187,7 +165,10 @@
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "layout": "full_bleed",
+        "cinematic_style": true,
+        "cinematic_width": 1400,
+        "cinematic_radius": 24,
+        "layout": "grid",
         "slide_height": "adapt_image",
         "slider_visual": "counter",
         "auto_rotate": false,
@@ -197,22 +178,17 @@
         "accessibility_info": "Presentación de diapositivas sobre tu marca"
       }
     },
-    "image_banner_Kfkan4": {
-      "type": "image-banner",
-      "disabled": true,
-      "name": "t:sections.image-banner.presets.name",
+    "cinematic_banner_2": {
+      "type": "cinematic-banner",
       "settings": {
         "image": "shopify://shop_images/1767X390_4x-8.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://collections/editorial-planeta",
+        "banner_width": 1400,
+        "banner_height": 500,
+        "banner_radius": 24
       }
     },
     "featured_collection_mG3j9G": {
@@ -221,7 +197,7 @@
       "settings": {
         "collection": "editorial-planeta",
         "products_to_show": 12,
-        "eyebrow": "EDITORIALPLANETA",
+        "eyebrow": "EDITORIAL PLANETA",
         "eyebrow_size": 16,
         "title": "",
         "heading_size": "h1",
@@ -249,67 +225,66 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_PpHG7g": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
+    "collection_carousel_penguin": {
+      "type": "collection-carousel",
       "settings": {
-        "image": "shopify://shop_images/738_desktop.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
-    "featured_collection_Q6YtBb": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
+        "title": "Penguin Random House",
+        "description": "Los títulos más buscados de uno de los sellos editoriales más grandes del mundo",
+        "title_size": 40,
+        "description_size": 18,
         "collection": "editorial-penguin",
-        "products_to_show": 12,
-        "eyebrow": "penguin random house",
-        "eyebrow_size": 16,
-        "title": "",
-        "heading_size": "h1",
-        "heading_color": "",
-        "show_divider": true,
-        "accent_color": "",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 6,
-        "enable_desktop_slider": false,
-        "full_width": false,
+        "products_to_show": 10,
+        "items_per_view": 4,
+        "show_controls": true,
         "show_view_all": true,
-        "view_all_style": "outline",
-        "color_scheme": "scheme-2",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "view_all_text": "Ver todo Penguin Random House",
+        "enable_autoplay": false,
+        "autoplay_speed": 5000,
+        "accent_color": "#2B2620",
+        "text_color": "#2B2620",
+        "background_color": "#FFFFFF",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
+    },
+    "email_signup": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Únete al club de lectura Grammata",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Recomendaciones, novedades y descuentos exclusivos directo a tu correo.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form"
+        }
+      },
+      "block_order": ["heading", "paragraph", "email_form"]
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
+    "cinematic_hero",
+    "trust_badges",
     "featured_collection",
-    "featured_collection_TbPEKV",
+    "collection_carousel_editorial",
     "slideshow_NDLNgw",
-    "image_banner_Kfkan4",
+    "cinematic_banner_2",
     "featured_collection_mG3j9G",
-    "image_banner_PpHG7g",
-    "featured_collection_Q6YtBb"
+    "collection_carousel_penguin",
+    "email_signup"
   ]
 }

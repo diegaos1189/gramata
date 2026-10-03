@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders a heart button that toggles a product in the browser's wishlist (localStorage-based, no app required).
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+{%- endcomment -%}
+{%- if product -%}
+  <wishlist-button
+    class="wishlist-button"
+    data-product-handle="{{ product.handle }}"
+  >
+    <button type="button" class="wishlist-button__toggle" aria-pressed="false" aria-label="Guardar en lista de deseos">
+      <span class="wishlist-button__icon-empty">{{ 'icon-heart.svg' | inline_asset_content }}</span>
+      <span class="wishlist-button__icon-filled">{{ 'icon-heart-filled.svg' | inline_asset_content }}</span>
+    </button>
+  </wishlist-button>
+{%- endif -%}

@@ -1,0 +1,144 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-frequently-bought-together.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'frequently-bought-together.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding page-width">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="frequently-bought-together__heading {{ section.settings.heading_size }}">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+
+  <frequently-bought-together class="frequently-bought-together" data-cart-add-url="{{ routes.cart_add_url }}">
+    <div class="frequently-bought-together__items">
+      {%- for block in section.blocks -%}
+        {%- assign fbt_product = block.settings.product -%}
+        {%- if fbt_product != blank -%}
+          {%- assign fbt_variant = fbt_product.selected_or_first_available_variant -%}
+          <div class="frequently-bought-together__item" {{ block.shopify_attributes }}>
+            <label class="frequently-bought-together__label">
+              <input
+                type="checkbox"
+                class="frequently-bought-together__checkbox"
+                checked
+                data-variant-id="{{ fbt_variant.id }}"
+                data-price="{{ fbt_variant.price }}"
+              >
+              {%- if fbt_product.featured_media -%}
+                {{ fbt_product.featured_media | image_url: width: 200 | image_tag: loading: 'lazy', alt: fbt_product.featured_media.alt }}
+              {%- endif -%}
+              <span class="frequently-bought-together__title">{{ fbt_product.title }}</span>
+              <span class="frequently-bought-together__price">{{ fbt_variant.price | money }}</span>
+            </label>
+          </div>
+          {%- if forloop.last == false -%}
+            <span class="frequently-bought-together__plus" aria-hidden="true">+</span>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="frequently-bought-together__summary">
+      <p class="frequently-bought-together__total">
+        Total:
+        <span class="frequently-bought-together__total-price" data-total-price>0</span>
+      </p>
+      <button type="button" class="button frequently-bought-together__add-button" data-add-all>
+        {{ section.settings.button_label | default: 'Agregar seleccionados al carrito' }}
+      </button>
+      <p class="frequently-bought-together__status" data-status role="status" aria-live="polite" hidden></p>
+    </div>
+  </frequently-bought-together>
+</div>
+
+{% schema %}
+{
+  "name": "Comprados juntos",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Frecuentemente comprados juntos"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Pequeño" },
+        { "value": "h1", "label": "Mediano" },
+        { "value": "h0", "label": "Grande" }
+      ],
+      "default": "h1",
+      "label": "Tamaño título"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Agregar seleccionados al carrito"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaciado superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaciado inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Producto"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Comprados juntos",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

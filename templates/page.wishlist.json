@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-wishlist",
+      "settings": {
+        "heading": "Mi lista de deseos",
+        "heading_size": "h1",
+        "empty_text": "Aún no has guardado ningún libro.",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": ["main"]
+}

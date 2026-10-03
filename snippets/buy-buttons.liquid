@@ -71,10 +71,7 @@
             endif
 
             assign is_preorder = false
-            if product.selected_or_first_available_variant.inventory_management == 'shopify'
-              and product.selected_or_first_available_variant.inventory_policy == 'continue'
-              and product.selected_or_first_available_variant.inventory_quantity <= 0
-              and quantity_rule_soldout == false
+            if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 and quantity_rule_soldout == false
               assign is_preorder = true
             endif
           -%}

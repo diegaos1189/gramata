@@ -1,0 +1,24 @@
+{%- comment -%}
+  Renders a genre badge based on the first product tag prefixed "genero_" (e.g. "genero_novela" -> "Novela").
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  - block: {Object} Section block, for shopify_attributes (optional)
+{%- endcomment -%}
+{%- liquid
+  assign genre_tag = ''
+  for tag in product.tags
+    if tag contains 'genero_'
+      assign genre_tag = tag | remove_first: 'genero_' | replace: '_', ' ' | capitalize
+      break
+    endif
+  endfor
+-%}
+{%- if genre_tag != '' -%}
+  <span
+    class="genre-badge"
+    style="background-color: {{ settings.genre_badge_background }}; color: {{ settings.genre_badge_text }};"
+    {% if block %}{{ block.shopify_attributes }}{% endif %}
+  >
+    {{ genre_tag }}
+  </span>
+{%- endif -%}

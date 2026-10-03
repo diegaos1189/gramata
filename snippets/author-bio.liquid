@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders the author's name and bio from product metafields custom.autor_nombre / custom.autor_bio.
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  - block: {Object} Section block, for shopify_attributes (optional)
+{%- endcomment -%}
+{%- assign author_name = product.metafields.custom.autor_nombre.value -%}
+{%- assign author_bio = product.metafields.custom.autor_bio.value -%}
+{%- if author_name != blank -%}
+  <div class="author-bio" {% if block %}{{ block.shopify_attributes }}{% endif %}>
+    <p class="author-bio__name">Autor: {{ author_name }}</p>
+    {%- if author_bio != blank -%}
+      <div class="author-bio__text rte">{{ author_bio }}</div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

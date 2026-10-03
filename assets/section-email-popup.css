@@ -1,0 +1,137 @@
+email-popup[hidden] {
+  display: none;
+}
+
+.email-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.email-popup__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 34rem;
+  width: calc(100% - 4rem);
+  max-height: calc(100% - 4rem);
+  overflow-y: auto;
+  background: rgb(var(--color-background));
+  border-radius: var(--popup-corner-radius, 0);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.email-popup__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.email-popup__content {
+  padding: 3rem;
+  text-align: center;
+}
+
+.email-popup__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: #ffffff;
+  color: #121212;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.email-popup__close svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.email-popup__disclaimer {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  margin-top: 1rem;
+}
+
+.email-popup__success {
+  text-align: center;
+}
+
+.email-popup__success-label {
+  font-family: var(--font-heading-family);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 1.2rem;
+}
+
+.email-popup__code {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 28rem;
+  margin: 0 auto;
+  border: 2px dashed rgba(var(--color-foreground), 0.3);
+  border-radius: var(--popup-corner-radius, 8px);
+  overflow: hidden;
+}
+
+.email-popup__code-value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1rem;
+  font-family: var(--font-heading-family);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.email-popup__code-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.6rem;
+  border: none;
+  border-left: 2px dashed rgba(var(--color-foreground), 0.3);
+  background: rgba(var(--color-foreground), 0.06);
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.email-popup__code-copy:hover {
+  background: rgba(var(--color-foreground), 0.12);
+}
+
+.email-popup__code-copy svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.email-popup__code-hint {
+  font-size: 1.3rem;
+  opacity: 0.7;
+  margin-top: 1.2rem;
+  margin-bottom: 0;
+}

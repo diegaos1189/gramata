@@ -1,0 +1,32 @@
+.trust-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trust-badges__item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.trust-badges__icon img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
+.trust-badges__heading {
+  font-weight: 600;
+  margin: 0;
+}
+
+.trust-badges__subtext {
+  font-size: 1.3rem;
+  opacity: 0.75;
+  margin: 0;
+}

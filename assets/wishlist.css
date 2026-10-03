@@ -1,0 +1,84 @@
+wishlist-button {
+  display: inline-block;
+}
+
+.card__media wishlist-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.wishlist-button__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(var(--color-background), 0.85);
+  cursor: pointer;
+}
+
+.wishlist-button__toggle svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: rgba(var(--color-foreground), 0.75);
+}
+
+.wishlist-button__icon-filled {
+  display: none;
+}
+
+.wishlist-button__toggle[aria-pressed="true"] .wishlist-button__icon-empty {
+  display: none;
+}
+
+.wishlist-button__toggle[aria-pressed="true"] .wishlist-button__icon-filled {
+  display: block;
+}
+
+.wishlist-button__toggle[aria-pressed="true"] svg {
+  fill: rgb(var(--color-button, 195, 34, 34));
+}
+
+.product__title wishlist-button {
+  margin-inline-start: 1rem;
+  vertical-align: middle;
+}
+
+.wishlist-empty {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.genre-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: var(--badge-corner-radius, 0);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.card__media .genre-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+.author-bio {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.author-bio__name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}

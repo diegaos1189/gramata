@@ -27,6 +27,7 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    {% render 'analytics-pixels' %}
 
     <script type="module">
       import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
@@ -279,6 +280,9 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'wishlist.css' | asset_url | stylesheet_tag }}
+    {{ 'premium-enhancements.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -401,5 +405,9 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    {%- unless request.page_type == 'password' -%}
+      {% section 'email-popup' %}
+    {%- endunless -%}
   </body>
 </html>

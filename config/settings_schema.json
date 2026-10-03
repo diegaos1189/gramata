@@ -1451,5 +1451,72 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Analítica y marketing",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google"
+      },
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "ID de medición GA4",
+        "info": "Ej: G-XXXXXXXXXX. Déjalo vacío para desactivar."
+      },
+      {
+        "type": "text",
+        "id": "gtm_container_id",
+        "label": "ID de contenedor Google Tag Manager",
+        "info": "Ej: GTM-XXXXXXX. Déjalo vacío para desactivar."
+      },
+      {
+        "type": "header",
+        "content": "Meta"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "ID de Meta Pixel (Facebook/Instagram)",
+        "info": "Solo el número del pixel. Déjalo vacío para desactivar."
+      }
+    ]
+  },
+  {
+    "name": "Genero y catálogo de libros",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Etiquetas de género"
+      },
+      {
+        "type": "paragraph",
+        "content": "Colores usados para las insignias de género cuando el producto tiene un tag genero_xxxxx. Se aplican en la tarjeta de producto y ficha de producto."
+      },
+      {
+        "type": "color",
+        "id": "genre_badge_background",
+        "label": "Fondo insignia de género",
+        "default": "#2c2c2c"
+      },
+      {
+        "type": "color",
+        "id": "genre_badge_text",
+        "label": "Texto insignia de género",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Bio del autor"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_author_bio",
+        "label": "Mostrar bio del autor en ficha de producto",
+        "info": "Usa los metafields custom.autor_nombre y custom.autor_bio del producto.",
+        "default": true
+      }
+    ]
   }
 ]

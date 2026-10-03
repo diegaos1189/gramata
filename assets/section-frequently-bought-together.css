@@ -1,0 +1,59 @@
+.frequently-bought-together__heading {
+  margin-bottom: 2rem;
+}
+
+.frequently-bought-together__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.frequently-bought-together__item {
+  max-width: 16rem;
+}
+
+.frequently-bought-together__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.frequently-bought-together__label img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--product-card-corner-radius, 0);
+}
+
+.frequently-bought-together__title {
+  font-size: 1.4rem;
+}
+
+.frequently-bought-together__price {
+  font-weight: 600;
+}
+
+.frequently-bought-together__plus {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.frequently-bought-together__summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.frequently-bought-together__total {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.frequently-bought-together__status[data-error] {
+  color: rgb(var(--color-error, 195, 34, 34));
+}

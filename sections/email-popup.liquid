@@ -1,0 +1,174 @@
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'section-email-popup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'email-popup.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.settings.enable -%}
+  <email-popup
+    class="email-popup color-{{ section.settings.color_scheme }} gradient"
+    data-delay="{{ section.settings.delay_seconds | times: 1000 }}"
+    data-cookie-days="{{ section.settings.hide_days }}"
+    hidden
+  >
+    <div class="email-popup__overlay" data-popup-close></div>
+    <div class="email-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="EmailPopup-Heading">
+      <button type="button" class="email-popup__close" data-popup-close aria-label="{{ 'accessibility.close' | t }}">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </button>
+
+      {%- if section.settings.image != blank -%}
+        <div class="email-popup__media">
+          {{
+            section.settings.image
+            | image_url: width: 600
+            | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 280px, 100vw'
+          }}
+        </div>
+      {%- endif -%}
+
+      <div class="email-popup__content">
+        {%- if section.settings.heading != blank -%}
+          <h2 id="EmailPopup-Heading" class="email-popup__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="email-popup__text rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {% form 'customer', class: 'newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter,popup">
+          <div class="newsletter-form__field-wrapper">
+            <div class="field">
+              <input
+                id="EmailPopupForm--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="field__input"
+                value="{{ form.email }}"
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                placeholder="{{ 'newsletter.label' | t }}"
+                required
+              >
+              <label class="field__label" for="EmailPopupForm--{{ section.id }}">
+                {{ 'newsletter.label' | t }}
+              </label>
+              <button type="submit" class="newsletter-form__button field__button" name="commit">
+                <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <small class="newsletter-form__message form__message">
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if form.posted_successfully? -%}
+            <div class="email-popup__success" tabindex="-1" autofocus>
+              <p class="email-popup__success-label">{{ 'newsletter.success' | t }}</p>
+              {%- if section.settings.discount_code != blank -%}
+                <div class="email-popup__code" data-copy-code>
+                  <span class="email-popup__code-value">{{ section.settings.discount_code }}</span>
+                  <button type="button" class="email-popup__code-copy" data-copy-button>
+                    {{- 'icon-copy.svg' | inline_asset_content -}}
+                    <span data-copy-label>Copiar</span>
+                  </button>
+                </div>
+                <p class="email-popup__code-hint">Úsalo al pagar en tu próxima compra.</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {% endform %}
+
+        {%- if section.settings.disclaimer != blank -%}
+          <p class="email-popup__disclaimer">{{ section.settings.disclaimer }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </email-popup>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Popup de email",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Activar popup",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay_seconds",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Retraso antes de mostrar",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "hide_days",
+      "min": 1,
+      "max": 90,
+      "step": 1,
+      "unit": "d",
+      "label": "No volver a mostrar durante",
+      "default": 14
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Suscríbete y obtén 10% de descuento"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h3", "label": "Pequeño" },
+        { "value": "h2", "label": "Mediano" },
+        { "value": "h1", "label": "Grande" }
+      ],
+      "default": "h2",
+      "label": "Tamaño título"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Recibe novedades y ofertas exclusivas de libros en tu correo.</p>"
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Código de descuento a mostrar",
+      "default": "BIENVENIDO10",
+      "info": "Debe existir un descuento con este mismo código creado en Admin → Descuentos. El tema no lo crea ni lo envía por correo, solo lo muestra en pantalla."
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Texto legal pequeño",
+      "default": "Puedes darte de baja cuando quieras."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}
