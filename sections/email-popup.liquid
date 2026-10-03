@@ -48,6 +48,34 @@
 
         {% form 'customer', class: 'newsletter-form' %}
           <input type="hidden" name="contact[tags]" value="newsletter,popup">
+
+          {%- if section.settings.ask_name -%}
+            <div class="email-popup__extra-field field">
+              <input
+                id="EmailPopupName--{{ section.id }}"
+                type="text"
+                name="contact[first_name]"
+                class="field__input"
+                autocomplete="given-name"
+                placeholder="Nombre"
+              >
+              <label class="field__label" for="EmailPopupName--{{ section.id }}">Nombre</label>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.ask_birthday -%}
+            <div class="email-popup__extra-field field">
+              <input
+                id="EmailPopupBirthday--{{ section.id }}"
+                type="date"
+                name="contact[Fecha de nacimiento]"
+                class="field__input"
+                placeholder="Fecha de nacimiento"
+              >
+              <label class="field__label" for="EmailPopupBirthday--{{ section.id }}">Fecha de nacimiento</label>
+            </div>
+          {%- endif -%}
+
           <div class="newsletter-form__field-wrapper">
             <div class="field">
               <input
@@ -178,6 +206,18 @@
       "label": "Código de descuento a mostrar",
       "default": "BIENVENIDO10",
       "info": "Debe existir un descuento con este mismo código creado en Admin → Descuentos. El tema no lo crea ni lo envía por correo, solo lo muestra en pantalla."
+    },
+    {
+      "type": "checkbox",
+      "id": "ask_name",
+      "label": "Pedir nombre",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "ask_birthday",
+      "label": "Pedir fecha de nacimiento",
+      "default": true
     },
     {
       "type": "text",
