@@ -26,6 +26,16 @@
       {%- endif -%}
 
       <div class="email-popup__content">
+        {%- if section.settings.badge_text != blank -%}
+          <div class="email-popup__badge">
+            <span class="email-popup__badge-value">{{ section.settings.badge_text }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="email-popup__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
         {%- if section.settings.heading != blank -%}
           <h2 id="EmailPopup-Heading" class="email-popup__heading {{ section.settings.heading_size }}">
             {{ section.settings.heading }}
@@ -128,6 +138,18 @@
       "label": "Imagen"
     },
     {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Texto de la insignia circular",
+      "default": "10% OFF"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño sobre el título",
+      "default": "Oferta exclusiva"
+    },
+    {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Título",
@@ -167,7 +189,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Esquema de color",
-      "default": "scheme-1"
+      "default": "scheme-3"
     }
   ]
 }
