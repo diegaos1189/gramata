@@ -32,6 +32,9 @@ class WishlistButton extends HTMLElement {
     const index = handles.indexOf(this.handle);
     if (index === -1) {
       handles.push(this.handle);
+      this.button.classList.remove('is-popping');
+      void this.button.offsetWidth;
+      this.button.classList.add('is-popping');
     } else {
       handles.splice(index, 1);
     }

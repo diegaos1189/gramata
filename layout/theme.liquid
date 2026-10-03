@@ -59,6 +59,7 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'standard-actions-override.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-interactions.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -282,6 +283,7 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'wishlist.css' | asset_url | stylesheet_tag }}
     {{ 'premium-enhancements.css' | asset_url | stylesheet_tag }}
+    {{ 'product-interactions.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
