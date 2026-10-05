@@ -254,33 +254,6 @@
   transform: translateZ(-20px) rotateY(-20deg) rotateZ(5deg);
 }
 
-.dist-hero__badge {
-  position: absolute;
-  right: 2%;
-  bottom: 6%;
-  z-index: 3;
-  padding: 1.6rem 2rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transform: translateZ(80px);
-  animation: dist-float 9s ease-in-out infinite;
-}
-
-.dist-hero__badge strong {
-  display: block;
-  font-family: var(--font-heading-family);
-  font-size: 2.8rem;
-  line-height: 1;
-}
-
-.dist-hero__badge span {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  letter-spacing: 0.06em;
-}
 
 .dist-stats {
   position: relative;
@@ -825,7 +798,6 @@
   }
 
   .dist-hero__orb,
-  .dist-hero__badge,
   .dist-brands__track {
     animation: none;
   }

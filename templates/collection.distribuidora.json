@@ -12,12 +12,49 @@
     "dist_hero": {
       "type": "distribuidora-hero",
       "blocks": {
-        "stat_1": { "type": "stat", "settings": { "number": 5000, "prefix": "", "suffix": "+", "label": "Títulos en catálogo" } },
-        "stat_2": { "type": "stat", "settings": { "number": 40, "prefix": "", "suffix": "+", "label": "Editoriales aliadas" } },
-        "stat_3": { "type": "stat", "settings": { "number": 32, "prefix": "", "suffix": "", "label": "Departamentos" } },
-        "stat_4": { "type": "stat", "settings": { "number": 300, "prefix": "", "suffix": "+", "label": "Clientes mayoristas" } }
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "number": 5000,
+            "prefix": "",
+            "suffix": "+",
+            "label": "Títulos en catálogo"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "number": 40,
+            "prefix": "",
+            "suffix": "+",
+            "label": "Editoriales aliadas"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "number": 32,
+            "prefix": "",
+            "suffix": "",
+            "label": "Departamentos"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "number": 300,
+            "prefix": "",
+            "suffix": "+",
+            "label": "Clientes mayoristas"
+          }
+        }
       },
-      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
       "settings": {
         "eyebrow": "Distribuidora Grámmata",
         "heading": "Llevamos los libros que <em>mueven</em> a Colombia",
@@ -26,39 +63,132 @@
         "button_link": "",
         "button2_label": "Ver catálogo",
         "button2_link": "",
-        "collection": "distribuidora-gramata",
-        "badge_number": "48h",
-        "badge_label": "Despacho promedio"
+        "collection": "distribuidora-gramata"
       }
     },
     "dist_brands": {
       "type": "distribuidora-brands",
       "blocks": {
-        "brand_1": { "type": "brand", "settings": { "name": "Planeta" } },
-        "brand_2": { "type": "brand", "settings": { "name": "Penguin Random House" } },
-        "brand_3": { "type": "brand", "settings": { "name": "Tusquets" } },
-        "brand_4": { "type": "brand", "settings": { "name": "Seix Barral" } },
-        "brand_5": { "type": "brand", "settings": { "name": "Grámmata" } },
-        "brand_6": { "type": "brand", "settings": { "name": "Destino" } },
-        "brand_7": { "type": "brand", "settings": { "name": "Paidós" } }
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "name": "Planeta"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "name": "Penguin Random House"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "name": "Tusquets"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "name": "Seix Barral"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "name": "Grámmata"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "name": "Destino"
+          }
+        },
+        "brand_7": {
+          "type": "brand",
+          "settings": {
+            "name": "Paidós"
+          }
+        }
       },
-      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6", "brand_7"],
+      "block_order": [
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_6",
+        "brand_7"
+      ],
       "settings": {
         "label": "Editoriales que distribuimos",
+        "label_size": 20,
+        "item_size": 26,
+        "logo_height": 44,
         "speed": 40
       }
     },
     "dist_services": {
       "type": "distribuidora-services",
       "blocks": {
-        "service_1": { "type": "service", "settings": { "icon": "store", "title": "Librerías", "text": "Surtido por temporadas, novedades y fondo editorial con reposición ágil." } },
-        "service_2": { "type": "service", "settings": { "icon": "school", "title": "Colegios y universidades", "text": "Listas escolares, plan lector y textos académicos con entrega programada." } },
-        "service_3": { "type": "service", "settings": { "icon": "library", "title": "Bibliotecas", "text": "Dotaciones completas para bibliotecas públicas, privadas y comunitarias." } },
-        "service_4": { "type": "service", "settings": { "icon": "truck", "title": "Despacho nacional", "text": "Envíos a los 32 departamentos con seguimiento en cada pedido." } },
-        "service_5": { "type": "service", "settings": { "icon": "percent", "title": "Precios mayoristas", "text": "Descuentos por volumen y condiciones de crédito para clientes recurrentes." } },
-        "service_6": { "type": "service", "settings": { "icon": "handshake", "title": "Asesor dedicado", "text": "Un asesor comercial que conoce tu negocio y te recomienda qué vender." } }
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "icon": "store",
+            "title": "Librerías",
+            "text": "Surtido por temporadas, novedades y fondo editorial con reposición ágil."
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "icon": "school",
+            "title": "Colegios y universidades",
+            "text": "Listas escolares, plan lector y textos académicos con entrega programada."
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "icon": "library",
+            "title": "Bibliotecas",
+            "text": "Dotaciones completas para bibliotecas públicas, privadas y comunitarias."
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "icon": "truck",
+            "title": "Despacho nacional",
+            "text": "Envíos a los 32 departamentos con seguimiento en cada pedido."
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "icon": "percent",
+            "title": "Precios mayoristas",
+            "text": "Descuentos por volumen y condiciones de crédito para clientes recurrentes."
+          }
+        },
+        "service_6": {
+          "type": "service",
+          "settings": {
+            "icon": "handshake",
+            "title": "Asesor dedicado",
+            "text": "Un asesor comercial que conoce tu negocio y te recomienda qué vender."
+          }
+        }
       },
-      "block_order": ["service_1", "service_2", "service_3", "service_4", "service_5", "service_6"],
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5",
+        "service_6"
+      ],
       "settings": {
         "eyebrow": "Lo que hacemos",
         "heading": "Una distribuidora pensada para <em>quien vende libros</em>",
@@ -132,12 +262,41 @@
     "dist_process": {
       "type": "distribuidora-process",
       "blocks": {
-        "step_1": { "type": "step", "settings": { "title": "Solicita tu cotización", "text": "Envíanos tu lista o pide nuestro catálogo actualizado." } },
-        "step_2": { "type": "step", "settings": { "title": "Asesoría comercial", "text": "Un asesor revisa tu pedido y te propone las mejores condiciones." } },
-        "step_3": { "type": "step", "settings": { "title": "Alistamiento", "text": "Preparamos y verificamos cada título en nuestra bodega." } },
-        "step_4": { "type": "step", "settings": { "title": "Entrega", "text": "Despachamos a tu ciudad con guía y seguimiento en tiempo real." } }
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Solicita tu cotización",
+            "text": "Envíanos tu lista o pide nuestro catálogo actualizado."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Asesoría comercial",
+            "text": "Un asesor revisa tu pedido y te propone las mejores condiciones."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Alistamiento",
+            "text": "Preparamos y verificamos cada título en nuestra bodega."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Entrega",
+            "text": "Despachamos a tu ciudad con guía y seguimiento en tiempo real."
+          }
+        }
       },
-      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
       "settings": {
         "eyebrow": "Cómo trabajamos",
         "heading": "De nuestra bodega a <em>tu estantería</em>",
@@ -147,12 +306,37 @@
     "dist_cta": {
       "type": "distribuidora-cta",
       "blocks": {
-        "perk_1": { "type": "perk", "settings": { "text": "Descuentos por volumen" } },
-        "perk_2": { "type": "perk", "settings": { "text": "Crédito para clientes recurrentes" } },
-        "perk_3": { "type": "perk", "settings": { "text": "Catálogo actualizado cada mes" } },
-        "perk_4": { "type": "perk", "settings": { "text": "Despachos a todo Colombia" } }
+        "perk_1": {
+          "type": "perk",
+          "settings": {
+            "text": "Descuentos por volumen"
+          }
+        },
+        "perk_2": {
+          "type": "perk",
+          "settings": {
+            "text": "Crédito para clientes recurrentes"
+          }
+        },
+        "perk_3": {
+          "type": "perk",
+          "settings": {
+            "text": "Catálogo actualizado cada mes"
+          }
+        },
+        "perk_4": {
+          "type": "perk",
+          "settings": {
+            "text": "Despachos a todo Colombia"
+          }
+        }
       },
-      "block_order": ["perk_1", "perk_2", "perk_3", "perk_4"],
+      "block_order": [
+        "perk_1",
+        "perk_2",
+        "perk_3",
+        "perk_4"
+      ],
       "settings": {
         "eyebrow": "Trabajemos juntos",
         "heading": "Conviértete en <em>cliente mayorista</em>",

@@ -49,13 +49,6 @@
             <div class="dist-hero__book"></div>
             <div class="dist-hero__book"></div>
           {%- endif -%}
-
-          {%- if section.settings.badge_number != blank -%}
-            <div class="dist-hero__badge">
-              <strong>{{ section.settings.badge_number }}</strong>
-              <span>{{ section.settings.badge_label }}</span>
-            </div>
-          {%- endif -%}
         </div>
       </div>
     </div>
@@ -94,9 +87,7 @@
     { "type": "text", "id": "button2_label", "label": "Botón secundario", "default": "Ver catálogo" },
     { "type": "url", "id": "button2_link", "label": "Link botón secundario" },
     { "type": "header", "content": "Libros en 3D" },
-    { "type": "collection", "id": "collection", "label": "Colección para las portadas", "info": "Usa las primeras 3 portadas" },
-    { "type": "text", "id": "badge_number", "label": "Insignia flotante: número", "default": "48h" },
-    { "type": "text", "id": "badge_label", "label": "Insignia flotante: texto", "default": "Despacho promedio" }
+    { "type": "collection", "id": "collection", "label": "Colección para las portadas", "info": "Usa las primeras 3 portadas" }
   ],
   "blocks": [
     {
