@@ -8,6 +8,23 @@
   overflow: hidden;
 }
 
+.dist :is(h1, h2, h3, h4, p, li, label),
+.dist .rte,
+.dist .rte p {
+  color: inherit;
+}
+
+.dist-hero .dist__title,
+.dist-process .dist__title,
+.dist-cta .dist__title {
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+}
+
+.dist-services .dist__title {
+  color: var(--dist-ink);
+}
+
 .dist__container {
   max-width: 128rem;
   margin: 0 auto;
