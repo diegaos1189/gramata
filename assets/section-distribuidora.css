@@ -536,7 +536,7 @@
 
 .dist-brands__label {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: var(--brands-label-size, 12px);
   letter-spacing: 0.24em;
   text-transform: uppercase;
   opacity: 0.55;
@@ -566,7 +566,7 @@
   align-items: center;
   white-space: nowrap;
   font-family: var(--font-heading-family);
-  font-size: 2.6rem;
+  font-size: var(--brands-item-size, 26px);
   letter-spacing: 0.02em;
   opacity: 0.45;
   transition: opacity 0.3s ease, color 0.3s ease;
@@ -578,7 +578,7 @@
 }
 
 .dist-brands__item img {
-  height: 4.4rem;
+  height: var(--brands-logo-height, 44px);
   width: auto;
   filter: grayscale(1);
   transition: filter 0.3s ease;

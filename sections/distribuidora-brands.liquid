@@ -1,6 +1,9 @@
 {{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
 
-<section class="dist dist-brands">
+<section
+  class="dist dist-brands"
+  style="--brands-label-size: {{ section.settings.label_size }}px; --brands-item-size: {{ section.settings.item_size }}px; --brands-logo-height: {{ section.settings.logo_height }}px;"
+>
   {%- if section.settings.label != blank -%}
     <p class="dist-brands__label">{{ section.settings.label }}</p>
   {%- endif -%}
@@ -30,6 +33,9 @@
   "tag": "div",
   "settings": [
     { "type": "text", "id": "label", "label": "Texto superior", "default": "Editoriales que distribuimos" },
+    { "type": "range", "id": "label_size", "label": "Tamaño del texto superior", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "item_size", "label": "Tamaño de las editoriales", "min": 16, "max": 72, "step": 2, "unit": "px", "default": 26 },
+    { "type": "range", "id": "logo_height", "label": "Altura de los logos", "min": 24, "max": 120, "step": 4, "unit": "px", "default": 44 },
     { "type": "range", "id": "speed", "label": "Velocidad (segundos por vuelta)", "min": 15, "max": 90, "step": 5, "unit": "s", "default": 40 }
   ],
   "blocks": [
