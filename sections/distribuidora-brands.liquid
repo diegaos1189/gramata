@@ -1,0 +1,60 @@
+{{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+
+<section class="dist dist-brands">
+  {%- if section.settings.label != blank -%}
+    <p class="dist-brands__label">{{ section.settings.label }}</p>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="dist-brands__viewport">
+      <div class="dist-brands__track" style="--speed: {{ section.settings.speed }}s">
+        {%- for i in (1..2) -%}
+          {%- for block in section.blocks -%}
+            <div class="dist-brands__item" {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
+              {%- if block.settings.logo != blank -%}
+                {{ block.settings.logo | image_url: height: 120 | image_tag: loading: 'lazy', alt: block.settings.name }}
+              {%- else -%}
+                {{ block.settings.name }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Distribuidora: Marcas",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Texto superior", "default": "Editoriales que distribuimos" },
+    { "type": "range", "id": "speed", "label": "Velocidad (segundos por vuelta)", "min": 15, "max": 90, "step": 5, "unit": "s", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Editorial",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Editorial" },
+        { "type": "image_picker", "id": "logo", "label": "Logo (opcional)", "info": "Si no hay logo se muestra el nombre" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Distribuidora: Marcas",
+      "blocks": [
+        { "type": "brand", "settings": { "name": "Planeta" } },
+        { "type": "brand", "settings": { "name": "Penguin Random House" } },
+        { "type": "brand", "settings": { "name": "Tusquets" } },
+        { "type": "brand", "settings": { "name": "Seix Barral" } },
+        { "type": "brand", "settings": { "name": "Grámmata" } },
+        { "type": "brand", "settings": { "name": "Destino" } },
+        { "type": "brand", "settings": { "name": "Paidós" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

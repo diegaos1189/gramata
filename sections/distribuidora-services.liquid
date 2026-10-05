@@ -1,0 +1,82 @@
+{{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'distribuidora.js' | asset_url }}" defer="defer"></script>
+
+<section class="dist dist-services">
+  <div class="dist__container">
+    <div class="dist-services__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="dist__eyebrow dist-reveal">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="dist__title dist-reveal" style="--i: 1">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.text != blank -%}
+        <div class="dist__lead dist-reveal" style="--i: 2">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="dist-services__grid">
+      {%- for block in section.blocks -%}
+        <article class="dist-card dist-reveal" style="--i: {{ forloop.index }}" data-tilt="8" {{ block.shopify_attributes }}>
+          <span class="dist-card__num" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <div class="dist-card__icon">{% render 'dist-icon', name: block.settings.icon %}</div>
+          <h3 class="dist-card__title">{{ block.settings.title }}</h3>
+          <p class="dist-card__text">{{ block.settings.text }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Distribuidora: Servicios",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Lo que hacemos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Una distribuidora pensada para <em>quien vende libros</em>" },
+    { "type": "richtext", "id": "text", "label": "Descripción", "default": "<p>Abastecemos tu negocio con el catálogo correcto, a tiempo y con las mejores condiciones comerciales del mercado.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Servicio",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "truck", "label": "Camión" },
+            { "value": "warehouse", "label": "Bodega" },
+            { "value": "store", "label": "Librería / tienda" },
+            { "value": "school", "label": "Colegio" },
+            { "value": "library", "label": "Biblioteca" },
+            { "value": "percent", "label": "Descuento" },
+            { "value": "handshake", "label": "Alianza" },
+            { "value": "catalog", "label": "Catálogo" },
+            { "value": "clock", "label": "Tiempo" },
+            { "value": "map", "label": "Ubicación" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Despachos nacionales" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Llegamos a todos los departamentos con logística propia y aliados de confianza." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Distribuidora: Servicios",
+      "blocks": [
+        { "type": "service", "settings": { "icon": "store", "title": "Librerías", "text": "Surtido por temporadas, novedades y fondo editorial con reposición ágil." } },
+        { "type": "service", "settings": { "icon": "school", "title": "Colegios y universidades", "text": "Listas escolares, plan lector y textos académicos con entrega programada." } },
+        { "type": "service", "settings": { "icon": "library", "title": "Bibliotecas", "text": "Dotaciones completas para bibliotecas públicas, privadas y comunitarias." } },
+        { "type": "service", "settings": { "icon": "truck", "title": "Despacho nacional", "text": "Envíos a los 32 departamentos con seguimiento en cada pedido." } },
+        { "type": "service", "settings": { "icon": "percent", "title": "Precios mayoristas", "text": "Descuentos por volumen y condiciones de crédito para clientes recurrentes." } },
+        { "type": "service", "settings": { "icon": "handshake", "title": "Asesor dedicado", "text": "Un asesor comercial que conoce tu negocio y te recomienda qué vender." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

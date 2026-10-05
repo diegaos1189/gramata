@@ -1,0 +1,151 @@
+{{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'distribuidora.js' | asset_url }}" defer="defer"></script>
+
+<section class="dist dist-cta" id="DistCta">
+  <div class="dist__container">
+    <div class="dist-cta__grid">
+      <div class="dist-cta__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="dist__eyebrow dist-reveal">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="dist__title dist-reveal" style="--i: 1">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <div class="dist__lead dist-reveal" style="--i: 2">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="dist-cta__perks dist-reveal" style="--i: 3">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>{% render 'dist-icon', name: 'check' %}{{ block.settings.text }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="dist-cta__contact dist-reveal" style="--i: 4">
+          {%- if section.settings.whatsapp != blank -%}
+            {%- assign wa = section.settings.whatsapp | remove: ' ' | remove: '+' | remove: '-' -%}
+            <a class="dist__btn dist__btn--primary" href="https://wa.me/{{ wa }}?text={{ section.settings.whatsapp_message | url_encode }}" target="_blank" rel="noopener">
+              {% render 'dist-icon', name: 'whatsapp' %}
+              WhatsApp comercial
+            </a>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <a class="dist__btn dist__btn--ghost" href="mailto:{{ section.settings.email }}">
+              {% render 'dist-icon', name: 'mail' %}
+              {{ section.settings.email }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="dist-form dist-reveal" style="--i: 2">
+        <h3 class="dist-form__title">{{ section.settings.form_title }}</h3>
+        <p class="dist-form__sub">{{ section.settings.form_subtitle }}</p>
+
+        {%- form 'contact', id: 'DistForm', class: 'dist-form__form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="dist-form__message dist-form__message--success" tabindex="-1" autofocus>
+              {{ section.settings.success_message }}
+            </div>
+          {%- elsif form.errors -%}
+            <div class="dist-form__message dist-form__message--error">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[Origen]" value="Formulario distribuidora">
+
+          <div class="dist-form__row">
+            <div class="dist-form__field">
+              <input type="text" id="DistName" name="contact[name]" placeholder=" " autocomplete="name" required>
+              <label for="DistName">Nombre completo *</label>
+            </div>
+            <div class="dist-form__field">
+              <input type="text" id="DistCompany" name="contact[Empresa]" placeholder=" " autocomplete="organization">
+              <label for="DistCompany">Empresa / institución</label>
+            </div>
+          </div>
+
+          <div class="dist-form__row">
+            <div class="dist-form__field">
+              <input type="email" id="DistEmail" name="contact[email]" placeholder=" " autocomplete="email" required>
+              <label for="DistEmail">Correo *</label>
+            </div>
+            <div class="dist-form__field">
+              <input type="tel" id="DistPhone" name="contact[phone]" placeholder=" " autocomplete="tel">
+              <label for="DistPhone">Teléfono / WhatsApp</label>
+            </div>
+          </div>
+
+          <div class="dist-form__row">
+            <div class="dist-form__field dist-form__field--select">
+              <select id="DistType" name="contact[Tipo de cliente]">
+                <option value="Librería">Librería</option>
+                <option value="Colegio / universidad">Colegio / universidad</option>
+                <option value="Biblioteca">Biblioteca</option>
+                <option value="Empresa">Empresa</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <label for="DistType">Tipo de cliente</label>
+            </div>
+            <div class="dist-form__field">
+              <input type="text" id="DistCity" name="contact[Ciudad]" placeholder=" " autocomplete="address-level2">
+              <label for="DistCity">Ciudad</label>
+            </div>
+          </div>
+
+          <div class="dist-form__field">
+            <textarea id="DistMessage" name="contact[body]" placeholder=" "></textarea>
+            <label for="DistMessage">¿Qué títulos o volumen necesitas?</label>
+          </div>
+
+          <button type="submit" class="dist__btn dist__btn--primary dist-form__submit">
+            {{ section.settings.submit_label }}
+            {% render 'dist-icon', name: 'arrow' %}
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Distribuidora: Cotización",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Trabajemos juntos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Conviértete en <em>cliente mayorista</em>" },
+    { "type": "richtext", "id": "text", "label": "Descripción", "default": "<p>Déjanos tus datos y un asesor comercial te contactará en menos de 24 horas hábiles con una propuesta a tu medida.</p>" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp comercial (con indicativo)", "info": "Ej: 573001234567" },
+    { "type": "text", "id": "whatsapp_message", "label": "Mensaje inicial de WhatsApp", "default": "Hola, quiero información sobre distribución mayorista." },
+    { "type": "text", "id": "email", "label": "Correo comercial" },
+    { "type": "header", "content": "Formulario" },
+    { "type": "text", "id": "form_title", "label": "Título del formulario", "default": "Solicita tu cotización" },
+    { "type": "text", "id": "form_subtitle", "label": "Subtítulo", "default": "Respuesta en menos de 24 horas hábiles." },
+    { "type": "text", "id": "submit_label", "label": "Texto del botón", "default": "Enviar solicitud" },
+    { "type": "text", "id": "success_message", "label": "Mensaje de éxito", "default": "¡Gracias! Recibimos tu solicitud. Un asesor te contactará pronto." }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Beneficio",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Descuentos por volumen" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Distribuidora: Cotización",
+      "blocks": [
+        { "type": "perk", "settings": { "text": "Descuentos por volumen" } },
+        { "type": "perk", "settings": { "text": "Crédito para clientes recurrentes" } },
+        { "type": "perk", "settings": { "text": "Catálogo actualizado cada mes" } },
+        { "type": "perk", "settings": { "text": "Despachos a todo Colombia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

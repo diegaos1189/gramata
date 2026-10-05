@@ -1,0 +1,61 @@
+{{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'distribuidora.js' | asset_url }}" defer="defer"></script>
+
+<section class="dist dist-process">
+  <div class="dist__container">
+    <div class="dist-process__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="dist__eyebrow dist-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="dist__title dist-reveal" style="--i: 1">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <div class="dist__lead dist-reveal" style="--i: 2">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="dist-process__steps" role="list" style="--steps: {{ section.blocks.size | at_least: 1 }}">
+      <div class="dist-process__line" aria-hidden="true"><span></span></div>
+      {%- for block in section.blocks -%}
+        <div class="dist-step dist-reveal" role="listitem" style="--i: {{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="dist-step__dot">{{ forloop.index }}</div>
+          <h3 class="dist-step__title">{{ block.settings.title }}</h3>
+          <p class="dist-step__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Distribuidora: Proceso",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Cómo trabajamos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "De nuestra bodega a <em>tu estantería</em>" },
+    { "type": "richtext", "id": "text", "label": "Descripción", "default": "<p>Un proceso simple, transparente y rápido para que solo te preocupes por vender.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Cotiza" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Cuéntanos qué necesitas." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Distribuidora: Proceso",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Solicita tu cotización", "text": "Envíanos tu lista o pide nuestro catálogo actualizado." } },
+        { "type": "step", "settings": { "title": "Asesoría comercial", "text": "Un asesor revisa tu pedido y te propone las mejores condiciones." } },
+        { "type": "step", "settings": { "title": "Alistamiento", "text": "Preparamos y verificamos cada título en nuestra bodega." } },
+        { "type": "step", "settings": { "title": "Entrega", "text": "Despachamos a tu ciudad con guía y seguimiento en tiempo real." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

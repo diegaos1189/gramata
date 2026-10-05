@@ -1,0 +1,126 @@
+{{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'distribuidora.js' | asset_url }}" defer="defer"></script>
+
+<section class="dist dist-hero" id="DistHero-{{ section.id }}">
+  <div class="dist-hero__grain" aria-hidden="true"></div>
+  <div class="dist-hero__orb dist-hero__orb--1" aria-hidden="true"></div>
+  <div class="dist-hero__orb dist-hero__orb--2" aria-hidden="true"></div>
+
+  <div class="dist__container">
+    <div class="dist-hero__grid">
+      <div class="dist-hero__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="dist__eyebrow dist-reveal" style="--i: 0">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h1 class="dist__title dist-reveal" style="--i: 1">{{ section.settings.heading }}</h1>
+        {%- if section.settings.text != blank -%}
+          <div class="dist__lead dist-reveal" style="--i: 2">{{ section.settings.text }}</div>
+        {%- endif -%}
+        <div class="dist-hero__actions dist-reveal" style="--i: 3">
+          {%- if section.settings.button_label != blank -%}
+            <a class="dist__btn dist__btn--primary" href="{{ section.settings.button_link | default: '#DistCta' }}">
+              {{ section.settings.button_label }}
+              {% render 'dist-icon', name: 'arrow' %}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button2_label != blank -%}
+            <a class="dist__btn dist__btn--ghost" href="{{ section.settings.button2_link | default: '#catalogo' }}">
+              {{ section.settings.button2_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="dist-hero__visual dist-reveal" style="--i: 2" aria-hidden="true">
+        <div class="dist-hero__stack">
+          {%- assign shown = 0 -%}
+          {%- if section.settings.collection != blank -%}
+            {%- for product in section.settings.collection.products limit: 3 -%}
+              <div class="dist-hero__book">
+                {%- if product.featured_media -%}
+                  {{ product.featured_media | image_url: width: 500 | image_tag: loading: 'eager', alt: '' }}
+                {%- endif -%}
+              </div>
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endfor -%}
+          {%- endif -%}
+          {%- if shown == 0 -%}
+            <div class="dist-hero__book"></div>
+            <div class="dist-hero__book"></div>
+            <div class="dist-hero__book"></div>
+          {%- endif -%}
+
+          {%- if section.settings.badge_number != blank -%}
+            <div class="dist-hero__badge">
+              <strong>{{ section.settings.badge_number }}</strong>
+              <span>{{ section.settings.badge_label }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="dist-stats">
+        {%- for block in section.blocks -%}
+          <div class="dist-stats__item dist-reveal" style="--i: {{ forloop.index }}" {{ block.shopify_attributes }}>
+            <span
+              class="dist-stats__number"
+              data-count
+              data-target="{{ block.settings.number }}"
+              data-prefix="{{ block.settings.prefix | escape }}"
+              data-suffix="{{ block.settings.suffix | escape }}"
+            >
+              {{- block.settings.prefix -}}{{- block.settings.number -}}{{- block.settings.suffix -}}
+            </span>
+            <span class="dist-stats__label">{{ block.settings.label }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Distribuidora: Hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Distribuidora editorial" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Llevamos los libros que <em>mueven</em> a Colombia" },
+    { "type": "richtext", "id": "text", "label": "Descripción", "default": "<p>Distribución mayorista para librerías, colegios, bibliotecas y empresas. Catálogo de las principales editoriales, despachos a todo el país y atención personalizada.</p>" },
+    { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Solicitar cotización" },
+    { "type": "url", "id": "button_link", "label": "Link botón principal", "info": "Vacío = baja al formulario de la página" },
+    { "type": "text", "id": "button2_label", "label": "Botón secundario", "default": "Ver catálogo" },
+    { "type": "url", "id": "button2_link", "label": "Link botón secundario" },
+    { "type": "header", "content": "Libros en 3D" },
+    { "type": "collection", "id": "collection", "label": "Colección para las portadas", "info": "Usa las primeras 3 portadas" },
+    { "type": "text", "id": "badge_number", "label": "Insignia flotante: número", "default": "48h" },
+    { "type": "text", "id": "badge_label", "label": "Insignia flotante: texto", "default": "Despacho promedio" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Cifra",
+      "limit": 4,
+      "settings": [
+        { "type": "number", "id": "number", "label": "Número", "default": 5000 },
+        { "type": "text", "id": "prefix", "label": "Prefijo" },
+        { "type": "text", "id": "suffix", "label": "Sufijo", "default": "+" },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Títulos en catálogo" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Distribuidora: Hero",
+      "blocks": [
+        { "type": "stat", "settings": { "number": 5000, "suffix": "+", "label": "Títulos en catálogo" } },
+        { "type": "stat", "settings": { "number": 40, "suffix": "+", "label": "Editoriales aliadas" } },
+        { "type": "stat", "settings": { "number": 32, "label": "Departamentos" } },
+        { "type": "stat", "settings": { "number": 300, "suffix": "+", "label": "Clientes mayoristas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
