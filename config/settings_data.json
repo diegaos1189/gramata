@@ -139,6 +139,24 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "email-popup": {
+        "type": "email-popup",
+        "settings": {
+          "enable": true,
+          "delay_seconds": 15,
+          "hide_days": 14,
+          "badge_text": "10% OFF",
+          "eyebrow": "Oferta exclusiva",
+          "heading": "Suscríbete y obtén 10% de descuento",
+          "heading_size": "h2",
+          "text": "<p>Recibe novedades y ofertas exclusivas de libros en tu correo.</p>",
+          "discount_code": "BIENVENIDO10",
+          "ask_name": true,
+          "ask_birthday": true,
+          "disclaimer": "Puedes darte de baja cuando quieras.",
+          "color_scheme": ""
+        }
       }
     },
     "content_for_index": [],
@@ -150,7 +168,7 @@
       },
       "13768625480086291342": {
         "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     },

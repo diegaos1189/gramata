@@ -12,12 +12,13 @@
     "cinematic_hero": {
       "type": "cinematic-banner",
       "settings": {
-        "image": "shopify://shop_images/1600X400_4x-8.png",
+        "image": "shopify://shop_images/Oferta_infantil_3x2_con_monstruos_y_libros.png",
         "heading": "",
         "text": "",
         "button_label": "",
         "button_link": "shopify://collections/libreria-online-1",
         "banner_width": 1400,
+        "adapt_height": true,
         "banner_height": 600,
         "banner_radius": 24
       }
@@ -27,18 +28,34 @@
       "blocks": {
         "badge-1": {
           "type": "badge",
-          "settings": { "icon_name": "truck", "heading": "Envío a todo Colombia", "text": "Recíbelo donde estés" }
+          "settings": {
+            "icon_name": "truck",
+            "heading": "Envío a todo Colombia",
+            "text": "Recíbelo donde estés"
+          }
         },
         "badge-2": {
           "type": "badge",
-          "settings": { "icon_name": "shield", "heading": "Pago 100% seguro", "text": "Tarjetas, PSE y contraentrega" }
+          "settings": {
+            "icon_name": "shield",
+            "heading": "Pago 100% seguro",
+            "text": "Tarjetas, PSE y contraentrega"
+          }
         },
         "badge-3": {
           "type": "badge",
-          "settings": { "icon_name": "refresh", "heading": "Cambios y devoluciones", "text": "Hasta 30 días" }
+          "settings": {
+            "icon_name": "refresh",
+            "heading": "Cambios y devoluciones",
+            "text": "Hasta 30 días"
+          }
         }
       },
-      "block_order": ["badge-1", "badge-2", "badge-3"],
+      "block_order": [
+        "badge-1",
+        "badge-2",
+        "badge-3"
+      ],
       "settings": {
         "color_scheme": "scheme-2",
         "padding_top": 32,
@@ -51,7 +68,7 @@
         "collection": "libreria-online-1",
         "products_to_show": 12,
         "eyebrow": "Selección de la librería",
-        "eyebrow_size": 16,
+        "eyebrow_size": 22,
         "title": "",
         "heading_size": "h2",
         "heading_color": "",
@@ -93,89 +110,11 @@
         "view_all_text": "Ver toda la colección",
         "enable_autoplay": true,
         "autoplay_speed": 5000,
-        "accent_color": "#6B2737",
-        "text_color": "#2B2620",
-        "background_color": "#FAF6F0",
+        "accent_color": "#6b2737",
+        "text_color": "#2b2620",
+        "background_color": "#faf6f0",
         "padding_top": 60,
         "padding_bottom": 60
-      }
-    },
-    "slideshow_NDLNgw": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_awmTcH": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1767X390_4x-8.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "shopify://products/las-cadenas-del-rey-edicion-de-lujo",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
-        },
-        "slide_QtK8dN": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1767X390.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "shopify://products/el-circulo-de-la-felicidad-paulo-coelho",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
-        },
-        "slide_YRB6QX": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1920X350.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-1"
-          }
-        }
-      },
-      "block_order": [
-        "slide_awmTcH",
-        "slide_QtK8dN",
-        "slide_YRB6QX"
-      ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "cinematic_style": true,
-        "cinematic_width": 1400,
-        "cinematic_radius": 24,
-        "layout": "grid",
-        "slide_height": "adapt_image",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Presentación de diapositivas sobre tu marca"
       }
     },
     "cinematic_banner_2": {
@@ -187,6 +126,7 @@
         "button_label": "",
         "button_link": "shopify://collections/editorial-planeta",
         "banner_width": 1400,
+        "adapt_height": true,
         "banner_height": 500,
         "banner_radius": 24
       }
@@ -198,7 +138,7 @@
         "collection": "editorial-planeta",
         "products_to_show": 12,
         "eyebrow": "EDITORIAL PLANETA",
-        "eyebrow_size": 16,
+        "eyebrow_size": 22,
         "title": "",
         "heading_size": "h1",
         "heading_color": "",
@@ -240,21 +180,15 @@
         "view_all_text": "Ver todo Penguin Random House",
         "enable_autoplay": false,
         "autoplay_speed": 5000,
-        "accent_color": "#2B2620",
-        "text_color": "#2B2620",
-        "background_color": "#FFFFFF",
+        "accent_color": "#2b2620",
+        "text_color": "#2b2620",
+        "background_color": "#ffffff",
         "padding_top": 60,
         "padding_bottom": 60
       }
     },
     "email_signup": {
       "type": "newsletter",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
-      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -270,10 +204,21 @@
           }
         },
         "email_form": {
-          "type": "email_form"
+          "type": "email_form",
+          "settings": {}
         }
       },
-      "block_order": ["heading", "paragraph", "email_form"]
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -281,7 +226,6 @@
     "trust_badges",
     "featured_collection",
     "collection_carousel_editorial",
-    "slideshow_NDLNgw",
     "cinematic_banner_2",
     "featured_collection_mG3j9G",
     "collection_carousel_penguin",

@@ -97,18 +97,34 @@
       "blocks": {
         "badge-1": {
           "type": "badge",
-          "settings": { "icon_name": "truck", "heading": "Envío a todo Colombia", "text": "Recíbelo donde estés" }
+          "settings": {
+            "icon_name": "truck",
+            "heading": "Envío a todo Colombia",
+            "text": "Recíbelo donde estés"
+          }
         },
         "badge-2": {
           "type": "badge",
-          "settings": { "icon_name": "shield", "heading": "Pago 100% seguro", "text": "Tarjetas, PSE y contraentrega" }
+          "settings": {
+            "icon_name": "shield",
+            "heading": "Pago 100% seguro",
+            "text": "Tarjetas, PSE y contraentrega"
+          }
         },
         "badge-3": {
           "type": "badge",
-          "settings": { "icon_name": "refresh", "heading": "Cambios y devoluciones", "text": "Hasta 30 días" }
+          "settings": {
+            "icon_name": "refresh",
+            "heading": "Cambios y devoluciones",
+            "text": "Hasta 30 días"
+          }
         }
       },
-      "block_order": ["badge-1", "badge-2", "badge-3"],
+      "block_order": [
+        "badge-1",
+        "badge-2",
+        "badge-3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 20,
@@ -128,8 +144,6 @@
     },
     "frequently-bought-together": {
       "type": "frequently-bought-together",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "heading": "Frecuentemente comprados juntos",
         "heading_size": "h1",
