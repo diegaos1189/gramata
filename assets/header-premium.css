@@ -132,6 +132,15 @@ details[open] > .header__menu-item > span::after {
   display: none;
 }
 
+.header__menu-item[href*='distribuidora'] > span,
+.header__menu-item[href*='distribuidora'] .header__active-menu-item,
+.header__menu-item[id^='HeaderMenu-distribuidora'] > span,
+.menu-drawer__menu-item[href*='distribuidora'],
+.menu-drawer__menu-item[href*='distribuidora'] * {
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
 .header__menu-item[href*='distribuidora']:hover,
 .header__menu-item[id^='HeaderMenu-distribuidora']:hover {
   transform: translateY(-2px);
