@@ -1,0 +1,49 @@
+{%- comment -%}
+  Renderiza los productos de la coleccion actual. Se pide via Section Rendering API
+  (?section_id=distribuidora-results) desde el filtro de editoriales.
+{%- endcomment -%}
+<div class="dist-results__inner" data-collection-title="{{ collection.title | escape }}">
+  {%- if collection.products_count > 0 -%}
+    <div class="dist-results__head">
+      <h3 class="dist-results__title">{{ collection.title }}</h3>
+      <span class="dist-results__count">
+        {{ collection.products_count }}
+        {% if collection.products_count == 1 %}título{% else %}títulos{% endif %}
+      </span>
+    </div>
+    <ul class="grid product-grid grid--5-col-desktop grid--2-col-tablet-down dist-results__grid" role="list">
+      {%- for product in collection.products limit: 20 -%}
+        <li class="grid__item dist-results__item" style="--i: {{ forloop.index0 }}">
+          {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: 'portrait',
+            image_shape: 'default',
+            show_secondary_image: false,
+            show_vendor: false,
+            show_rating: false,
+            skip_styles: true,
+            lazy_load: true,
+            section_id: 'distribuidora-results'
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if collection.products_count > 20 -%}
+      <div class="dist-results__more">
+        <a class="dist__btn dist__btn--dark" href="{{ collection.url }}">
+          Ver los {{ collection.products_count }} títulos de {{ collection.title }}
+          {% render 'dist-icon', name: 'arrow' %}
+        </a>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <p class="dist-results__empty">Aún no hay títulos disponibles de esta editorial.</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Distrib.: Resultados",
+  "settings": []
+}
+{% endschema %}

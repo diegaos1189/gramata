@@ -1,8 +1,14 @@
 {{ 'section-distribuidora.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.filter_mode -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'distribuidora-brand-filter.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 <section
   class="dist dist-brands{% unless section.settings.logos_grayscale %} dist-brands--color{% endunless %}"
   style="--brands-label-size: {{ section.settings.label_size }}px; --brands-item-size: {{ section.settings.item_size }}px; --brands-logo-height: {{ section.settings.logo_height }}px; --brands-bg: {{ section.settings.background_color }};"
+  {% if section.settings.filter_mode %}data-brand-filter{% endif %}
 >
   {%- if section.settings.label != blank -%}
     <p class="dist-brands__label">{{ section.settings.label }}</p>
@@ -23,6 +29,10 @@
               <a
                 href="{{ brand_url }}"
                 class="dist-brands__item dist-brands__item--link"
+                {% if block.settings.collection != blank %}
+                  data-brand-key="{{ block.id }}"
+                  data-brand-name="{{ block.settings.name | escape }}"
+                {% endif %}
                 {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true" tabindex="-1"{% endif %}
               >
             {%- else -%}
@@ -42,6 +52,23 @@
         {%- endfor -%}
       </div>
     </div>
+
+    {%- if section.settings.filter_mode -%}
+      <div class="dist-results" data-brand-results hidden>
+        <div class="dist__container">
+          <div class="dist-results__bar">
+            <p class="dist-results__hint">
+              Mostrando títulos de <strong data-brand-results-name></strong>
+            </p>
+            <button type="button" class="dist-results__clear" data-brand-clear>
+              Ver todas las editoriales
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="dist-results__body" data-brand-results-body aria-live="polite"></div>
+        </div>
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </section>
 
@@ -51,6 +78,7 @@
   "tag": "div",
   "settings": [
     { "type": "text", "id": "label", "label": "Texto superior", "default": "Editoriales que distribuimos" },
+    { "type": "checkbox", "id": "filter_mode", "label": "Usar logos como filtro", "info": "Al hacer clic en una editorial con colección, sus libros se muestran debajo sin salir de la página.", "default": true },
     { "type": "range", "id": "label_size", "label": "Tamaño del texto superior", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 12 },
     { "type": "range", "id": "item_size", "label": "Tamaño de las editoriales", "min": 16, "max": 72, "step": 2, "unit": "px", "default": 26 },
     { "type": "range", "id": "logo_height", "label": "Altura de los logos", "min": 24, "max": 200, "step": 4, "unit": "px", "default": 96 },
