@@ -598,8 +598,55 @@
 }
 
 /* ---------- Filtro por editorial ---------- */
-.dist-brands.is-filtering .dist-brands__track {
-  animation-play-state: paused;
+.dist-brands__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2.4rem 0 0;
+  padding: 0 2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--dist-ink);
+  opacity: 0.5;
+}
+
+.dist-brands__hint svg {
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--dist-accent);
+  animation: dist-hint-tap 2.4s ease-in-out infinite;
+  transform-origin: 50% 80%;
+}
+
+@keyframes dist-hint-tap {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    transform: translateY(-3px) scale(1);
+  }
+  80% {
+    transform: translateY(1px) scale(0.9);
+  }
+}
+
+.dist-brands.is-filtering .dist-brands__hint {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dist-brands__hint svg {
+    animation: none;
+  }
 }
 
 .dist-brands.is-filtering .dist-brands__item {
