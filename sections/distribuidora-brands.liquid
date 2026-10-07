@@ -13,13 +13,31 @@
       <div class="dist-brands__track" style="--speed: {{ section.settings.speed }}s">
         {%- for i in (1..2) -%}
           {%- for block in section.blocks -%}
-            <div class="dist-brands__item" {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
+            {%- liquid
+              assign brand_url = block.settings.link
+              if block.settings.collection != blank
+                assign brand_url = block.settings.collection.url
+              endif
+            -%}
+            {%- if brand_url != blank -%}
+              <a
+                href="{{ brand_url }}"
+                class="dist-brands__item dist-brands__item--link"
+                {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true" tabindex="-1"{% endif %}
+              >
+            {%- else -%}
+              <div class="dist-brands__item" {% if i == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
+            {%- endif -%}
               {%- if block.settings.logo != blank -%}
                 {{ block.settings.logo | image_url: height: 120 | image_tag: loading: 'lazy', alt: block.settings.name }}
               {%- else -%}
                 {{ block.settings.name }}
               {%- endif -%}
-            </div>
+            {%- if brand_url != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
           {%- endfor -%}
         {%- endfor -%}
       </div>
@@ -44,7 +62,9 @@
       "name": "Editorial",
       "settings": [
         { "type": "text", "id": "name", "label": "Nombre", "default": "Editorial" },
-        { "type": "image_picker", "id": "logo", "label": "Logo (opcional)", "info": "Si no hay logo se muestra el nombre" }
+        { "type": "image_picker", "id": "logo", "label": "Logo (opcional)", "info": "Si no hay logo se muestra el nombre" },
+        { "type": "collection", "id": "collection", "label": "Colección de la editorial", "info": "Al hacer clic en la editorial, lleva a esta colección" },
+        { "type": "url", "id": "link", "label": "Link alternativo (opcional)", "info": "Se usa solo si no eliges colección" }
       ]
     }
   ],
