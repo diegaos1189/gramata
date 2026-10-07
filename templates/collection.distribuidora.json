@@ -42,7 +42,7 @@
         "stat_4": {
           "type": "stat",
           "settings": {
-            "number": 300,
+            "number": 100,
             "prefix": "",
             "suffix": "+",
             "label": "Clientes mayoristas"
@@ -72,43 +72,73 @@
         "brand_1": {
           "type": "brand",
           "settings": {
-            "name": "Planeta"
+            "name": "Aleta Ediciones",
+            "logo": "shopify://shop_images/10.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_2": {
           "type": "brand",
           "settings": {
-            "name": "Penguin Random House"
+            "name": "Sargantana",
+            "logo": "shopify://shop_images/11.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_3": {
           "type": "brand",
           "settings": {
-            "name": "Tusquets"
+            "name": "Munyx",
+            "logo": "shopify://shop_images/12.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_4": {
           "type": "brand",
           "settings": {
-            "name": "Seix Barral"
+            "name": "Eneida",
+            "logo": "shopify://shop_images/13.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_5": {
           "type": "brand",
           "settings": {
-            "name": "Grámmata"
+            "name": "Grámmata",
+            "logo": "shopify://shop_images/14.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_6": {
           "type": "brand",
           "settings": {
-            "name": "Destino"
+            "name": "Tutifruti",
+            "logo": "shopify://shop_images/15.png",
+            "collection": "",
+            "link": ""
           }
         },
         "brand_7": {
           "type": "brand",
           "settings": {
-            "name": "Paidós"
+            "name": "Punto de vista editores",
+            "logo": "shopify://shop_images/16.png",
+            "collection": "",
+            "link": ""
+          }
+        },
+        "brand_Lm3d8n": {
+          "type": "brand",
+          "settings": {
+            "name": "La linea del horizonte",
+            "logo": "shopify://shop_images/17.png",
+            "collection": "",
+            "link": ""
           }
         }
       },
@@ -119,80 +149,17 @@
         "brand_4",
         "brand_5",
         "brand_6",
-        "brand_7"
+        "brand_7",
+        "brand_Lm3d8n"
       ],
       "settings": {
         "label": "Editoriales que distribuimos",
-        "label_size": 20,
-        "item_size": 26,
-        "logo_height": 44,
-        "speed": 40
-      }
-    },
-    "dist_services": {
-      "type": "distribuidora-services",
-      "blocks": {
-        "service_1": {
-          "type": "service",
-          "settings": {
-            "icon": "store",
-            "title": "Librerías",
-            "text": "Surtido por temporadas, novedades y fondo editorial con reposición ágil."
-          }
-        },
-        "service_2": {
-          "type": "service",
-          "settings": {
-            "icon": "school",
-            "title": "Colegios y universidades",
-            "text": "Listas escolares, plan lector y textos académicos con entrega programada."
-          }
-        },
-        "service_3": {
-          "type": "service",
-          "settings": {
-            "icon": "library",
-            "title": "Bibliotecas",
-            "text": "Dotaciones completas para bibliotecas públicas, privadas y comunitarias."
-          }
-        },
-        "service_4": {
-          "type": "service",
-          "settings": {
-            "icon": "truck",
-            "title": "Despacho nacional",
-            "text": "Envíos a los 32 departamentos con seguimiento en cada pedido."
-          }
-        },
-        "service_5": {
-          "type": "service",
-          "settings": {
-            "icon": "percent",
-            "title": "Precios mayoristas",
-            "text": "Descuentos por volumen y condiciones de crédito para clientes recurrentes."
-          }
-        },
-        "service_6": {
-          "type": "service",
-          "settings": {
-            "icon": "handshake",
-            "title": "Asesor dedicado",
-            "text": "Un asesor comercial que conoce tu negocio y te recomienda qué vender."
-          }
-        }
-      },
-      "block_order": [
-        "service_1",
-        "service_2",
-        "service_3",
-        "service_4",
-        "service_5",
-        "service_6"
-      ],
-      "settings": {
-        "eyebrow": "Lo que hacemos",
-        "heading": "Una distribuidora pensada para <em>quien vende libros</em>",
-        "text": "<p>Abastecemos tu negocio con el catálogo correcto, a tiempo y con las mejores condiciones comerciales del mercado.</p>"
+        "label_size": 19,
+        "item_size": 32,
+        "logo_height": 120,
+        "logos_grayscale": false,
+        "background_color": "#ffffff",
+        "speed": 25
       }
     },
     "banner": {
@@ -354,7 +321,6 @@
   "order": [
     "dist_hero",
     "dist_brands",
-    "dist_services",
     "banner",
     "product-grid",
     "featured_collection_FQYUNK",
