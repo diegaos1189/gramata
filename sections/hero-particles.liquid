@@ -47,6 +47,7 @@
 <hero-particles
   id="{{ hp_id }}"
   class="hp hp--{{ section.settings.layout }}{% if section.settings.autoplay and section.blocks.size > 1 %} hp--autoplay{% endif %}"
+  data-transition="{{ section.settings.transition }}"
   data-autoplay="{{ section.settings.autoplay }}"
   data-duration="{{ section.settings.duration }}"
   data-particle="{{ section.settings.particle_size }}"
@@ -175,7 +176,7 @@
 
 {% schema %}
 {
-  "name": "Hero partículas 3D",
+  "name": "Hero slider premium",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -216,9 +217,21 @@
     },
     { "type": "color", "id": "background", "label": "Color de fondo", "default": "#120c0d" },
     { "type": "header", "content": "Animación" },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Tipo de transición",
+      "options": [
+        { "value": "page", "label": "Pasar página (libro)" },
+        { "value": "fade", "label": "Fundido cinematográfico" },
+        { "value": "slide", "label": "Deslizar con profundidad" },
+        { "value": "particles", "label": "Partículas 3D" }
+      ],
+      "default": "page"
+    },
     { "type": "checkbox", "id": "autoplay", "label": "Cambio automático", "default": true },
     { "type": "range", "id": "speed", "label": "Tiempo por diapositiva", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
-    { "type": "range", "id": "duration", "label": "Duración de la transición", "min": 1200, "max": 3600, "step": 200, "unit": "ms", "default": 2200 },
+    { "type": "range", "id": "duration", "label": "Duración de la transición", "min": 600, "max": 3600, "step": 100, "unit": "ms", "default": 1400 },
     { "type": "range", "id": "particle_size", "label": "Tamaño de partícula", "info": "Más pequeño = más detalle, más exigente para el equipo.", "min": 3, "max": 10, "step": 1, "unit": "px", "default": 5 },
     { "type": "checkbox", "id": "tilt", "label": "Inclinación 3D con el mouse (tarjeta)", "default": true },
     { "type": "text", "id": "accessibility_label", "label": "Descripción para accesibilidad", "default": "Destacados de la librería" }
@@ -254,7 +267,7 @@
   ],
   "presets": [
     {
-      "name": "Hero partículas 3D",
+      "name": "Hero slider premium",
       "blocks": [
         { "type": "slide", "settings": { "eyebrow": "Novedades", "heading": "Historias que se quedan <em>contigo</em>", "button_label": "Explorar catálogo", "overlay": 30 } },
         { "type": "slide", "settings": { "eyebrow": "Editorial Grámmata", "heading": "Ediciones que se <em>sienten</em>", "button_label": "Ver ediciones", "overlay": 30 } },

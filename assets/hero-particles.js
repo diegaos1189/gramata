@@ -55,7 +55,8 @@
       this.fit = this.dataset.fit === 'contain' ? 'contain' : 'cover';
       this.bg = parseColor(this.dataset.bg);
       this.autoplay = this.dataset.autoplay === 'true' && this.count > 1;
-      this.particlesOk = !!(this.canvas && this.canvas.getContext);
+      this.mode = this.dataset.transition || 'page';
+      this.particlesOk = this.mode === 'particles' && !!(this.canvas && this.canvas.getContext);
       this.cache = new Map();
 
       if (this.count < 2) return;
@@ -72,6 +73,13 @@
       this.setActiveBar(0, true);
 
       const warm = () => {
+        if (this.mode !== 'particles') {
+          this.media.forEach((m) => {
+            const img = m.querySelector('img');
+            if (img) img.loading = 'eager';
+          });
+          return;
+        }
         this.media.forEach((m) => {
           const img = m.querySelector('img');
           if (img) img.loading = 'eager';
@@ -262,14 +270,85 @@
       this.setActiveBar(target, false);
       this.updateCounter();
 
-      if (!A) {
-        this.swapMedia(from, target, instant);
-        this.swapContent(from, target, instant ? 0 : 350);
-        setTimeout(() => this.finish(), instant ? 50 : 1000);
+      if (A) {
+        this.runParticles(A, B, from, target, dir);
         return;
       }
 
-      this.runParticles(A, B, from, target, dir);
+      if (!instant && !reduceMQ.matches && this.mode === 'page') {
+        this.runPage(from, target, dir);
+        return;
+      }
+
+      if (!instant && !reduceMQ.matches && this.mode === 'slide') {
+        this.runSlide(from, target, dir);
+        return;
+      }
+
+      this.swapMedia(from, target, instant);
+      this.swapContent(from, target, instant ? 0 : 400);
+      setTimeout(() => this.finish(), instant ? 50 : 1300);
+    }
+
+    runPage(from, to, dir) {
+      const duration = this.duration;
+      const flip = document.createElement('div');
+      flip.className = 'hp__flip';
+      flip.dataset.dir = dir > 0 ? 'next' : 'prev';
+      flip.style.setProperty('--hp-dur', `${duration}ms`);
+
+      const front = document.createElement('div');
+      front.className = 'hp__flip-front';
+      Array.from(this.media[from].childNodes).forEach((node) => front.appendChild(node.cloneNode(true)));
+      front.querySelectorAll('img').forEach((img) => {
+        img.loading = 'eager';
+        img.removeAttribute('fetchpriority');
+      });
+
+      const back = document.createElement('div');
+      back.className = 'hp__flip-back';
+      flip.append(front, back);
+
+      const shadow = document.createElement('div');
+      shadow.className = 'hp__flip-shadow';
+      shadow.dataset.dir = flip.dataset.dir;
+      shadow.style.setProperty('--hp-dur', `${duration}ms`);
+
+      const media = this.querySelector('.hp__media');
+      media.after(shadow, flip);
+      this.swapMedia(from, to, true);
+      this.swapContent(from, to, duration * 0.45);
+
+      requestAnimationFrame(() => {
+        flip.classList.add('is-turning');
+        shadow.classList.add('is-turning');
+      });
+
+      const done = () => {
+        flip.remove();
+        shadow.remove();
+        this.finish();
+      };
+      flip.addEventListener('animationend', done, { once: true });
+      setTimeout(() => flip.isConnected && done(), duration + 300);
+    }
+
+    runSlide(from, to, dir) {
+      const duration = this.duration;
+      this.style.setProperty('--hp-dir', String(dir > 0 ? 1 : -1));
+      this.style.setProperty('--hp-dur', `${duration}ms`);
+      const out = this.media[from];
+      const inn = this.media[to];
+      this.classList.add('hp--instant');
+      out.classList.add('is-leaving');
+      inn.classList.add('is-entering');
+      this.swapMedia(from, to, true);
+      this.swapContent(from, to, duration * 0.4);
+      setTimeout(() => {
+        out.classList.remove('is-leaving');
+        inn.classList.remove('is-entering');
+        this.finish();
+      }, duration + 50);
     }
 
     swapMedia(from, to, instant) {

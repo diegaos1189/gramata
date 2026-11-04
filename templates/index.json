@@ -298,10 +298,11 @@
         "background": "#120c0d",
         "autoplay": true,
         "speed": 6,
-        "duration": 2200,
+        "duration": 1400,
         "particle_size": 5,
         "tilt": true,
-        "accessibility_label": "Destacados de la librería"
+        "accessibility_label": "Destacados de la librería",
+        "transition": "page"
       }
     }
   },
