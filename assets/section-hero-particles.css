@@ -82,7 +82,7 @@
   transition: none;
 }
 
-/* ---------- Pasar pagina ---------- */
+/* ---------- Pasar pagina (hoja con curvatura) ---------- */
 .hp__flip,
 .hp__flip-shadow {
   position: absolute;
@@ -92,133 +92,65 @@
 }
 
 .hp__flip {
+  perspective: 2200px;
+  perspective-origin: 50% 40%;
+}
+
+.hp__flip-shadow {
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.15) calc(var(--edge, 100%) * 0.7), rgba(0, 0, 0, 0) var(--edge, 100%));
+}
+
+.hp__flip-shadow[data-dir='prev'] {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.15) calc(var(--edge, 100%) * 0.7), rgba(0, 0, 0, 0) var(--edge, 100%));
+}
+
+.hp__strip {
+  position: absolute;
+  top: 0;
+  height: 100%;
   transform-style: preserve-3d;
-  transform-origin: left center;
+  will-change: transform;
 }
 
-.hp__flip[data-dir='prev'] {
-  transform-origin: right center;
-}
-
-.hp__flip-front,
-.hp__flip-back {
+.hp__strip-front,
+.hp__strip-back {
   position: absolute;
   inset: 0;
-  overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-.hp__flip-front picture,
-.hp__flip-front img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.hp__flip-front img {
-  object-fit: var(--hp-fit);
-  object-position: center;
-}
-
-.hp__flip-front .hp__overlay {
-  position: absolute;
-  inset: 0;
-}
-
-.hp__flip-front::after {
+.hp__strip-front::after,
+.hp__strip-back::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
 }
 
-.hp__flip[data-dir='prev'] .hp__flip-front::after {
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45) 100%);
+.hp__strip-front::after {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, var(--gloss, 0)), rgba(255, 255, 255, 0) 70%),
+    rgba(0, 0, 0, var(--shade, 0));
 }
 
-.hp__flip-back {
+.hp__flip[data-dir='prev'] .hp__strip-front::after {
+  background:
+    linear-gradient(270deg, rgba(255, 255, 255, var(--gloss, 0)), rgba(255, 255, 255, 0) 70%),
+    rgba(0, 0, 0, var(--shade, 0));
+}
+
+.hp__strip-back {
   transform: rotateY(180deg);
-  background:
-    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.05) 0 1px, transparent 1px 28px),
-    linear-gradient(90deg, #e9dfcf 0%, #faf6ef 18%, #f6efe3 100%);
+  background-color: #f6efe3;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.06) 0 1px, transparent 1px 30px),
+    linear-gradient(90deg, #e6dac6 0%, #faf6ef 22%, #f4ecdf 100%);
 }
 
-.hp__flip[data-dir='prev'] .hp__flip-back {
-  background:
-    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.05) 0 1px, transparent 1px 28px),
-    linear-gradient(270deg, #e9dfcf 0%, #faf6ef 18%, #f6efe3 100%);
-}
-
-.hp__flip.is-turning {
-  animation: hp-page-next var(--hp-dur, 1400ms) cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
-}
-
-.hp__flip[data-dir='prev'].is-turning {
-  animation-name: hp-page-prev;
-}
-
-.hp__flip.is-turning .hp__flip-front::after {
-  animation: hp-page-shade var(--hp-dur, 1400ms) ease-in forwards;
-}
-
-.hp__flip-shadow {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 60%);
-  opacity: 0;
-}
-
-.hp__flip-shadow[data-dir='prev'] {
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 60%);
-}
-
-.hp__flip-shadow.is-turning {
-  animation: hp-page-cast var(--hp-dur, 1400ms) ease forwards;
-}
-
-@keyframes hp-page-next {
-  0% {
-    transform: perspective(2400px) rotateY(0deg);
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: perspective(2400px) rotateY(-180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes hp-page-prev {
-  0% {
-    transform: perspective(2400px) rotateY(0deg);
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: perspective(2400px) rotateY(180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes hp-page-shade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes hp-page-cast {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  45% {
-    opacity: 1;
-  }
+.hp__strip-back::after {
+  background: rgba(60, 40, 20, var(--shade, 0));
 }
 
 /* ---------- Deslizar con profundidad ---------- */

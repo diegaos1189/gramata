@@ -290,47 +290,118 @@
       setTimeout(() => this.finish(), instant ? 50 : 1300);
     }
 
+    pageImageInfo(index, W, H) {
+      const slide = this.media[index];
+      const img = slide.querySelector('img.hp__img');
+      const overlay = parseFloat(slide.dataset.overlay || '0');
+      if (!img || !img.naturalWidth) return { src: null, overlay };
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+      const s = this.fit === 'contain' ? Math.min(W / iw, H / ih) : Math.max(W / iw, H / ih);
+      const dw = iw * s;
+      const dh = ih * s;
+      return { src: img.currentSrc || img.src, dw, dh, dx: (W - dw) / 2, dy: (H - dh) / 2, overlay };
+    }
+
     runPage(from, to, dir) {
-      const duration = this.duration;
+      const duration = Math.max(this.duration, 900);
+      const { W, H } = this.size();
+      const next = dir > 0;
+      const N = W < 750 ? 10 : 18;
+      const w = W / N;
+      const info = this.pageImageInfo(from, W, H);
+      const bg = this.bg;
+      const bgCss = `rgb(${bg.r},${bg.g},${bg.b})`;
+
       const flip = document.createElement('div');
       flip.className = 'hp__flip';
-      flip.dataset.dir = dir > 0 ? 'next' : 'prev';
-      flip.style.setProperty('--hp-dur', `${duration}ms`);
-
-      const front = document.createElement('div');
-      front.className = 'hp__flip-front';
-      Array.from(this.media[from].childNodes).forEach((node) => front.appendChild(node.cloneNode(true)));
-      front.querySelectorAll('img').forEach((img) => {
-        img.loading = 'eager';
-        img.removeAttribute('fetchpriority');
-      });
-
-      const back = document.createElement('div');
-      back.className = 'hp__flip-back';
-      flip.append(front, back);
+      flip.dataset.dir = next ? 'next' : 'prev';
 
       const shadow = document.createElement('div');
       shadow.className = 'hp__flip-shadow';
       shadow.dataset.dir = flip.dataset.dir;
-      shadow.style.setProperty('--hp-dur', `${duration}ms`);
+
+      const strips = [];
+      let parent = flip;
+      for (let n = 0; n < N; n++) {
+        const k = next ? n : N - 1 - n;
+        const strip = document.createElement('div');
+        strip.className = 'hp__strip';
+        strip.style.width = `${w + 1}px`;
+        if (n === 0) {
+          strip.style[next ? 'left' : 'right'] = '0px';
+        } else {
+          strip.style[next ? 'left' : 'right'] = `${w}px`;
+        }
+        strip.style.transformOrigin = next ? 'left center' : 'right center';
+
+        const front = document.createElement('div');
+        front.className = 'hp__strip-front';
+        const layers = [];
+        if (info.overlay > 0) layers.push(`linear-gradient(rgba(0,0,0,${info.overlay}),rgba(0,0,0,${info.overlay}))`);
+        if (info.src) {
+          layers.push(`url("${info.src}")`);
+          front.style.backgroundImage = layers.join(',');
+          const size = `${info.dw}px ${info.dh}px`;
+          const pos = `${info.dx - k * w}px ${info.dy}px`;
+          front.style.backgroundSize = info.overlay > 0 ? `100% 100%, ${size}` : size;
+          front.style.backgroundPosition = info.overlay > 0 ? `0 0, ${pos}` : pos;
+          front.style.backgroundRepeat = 'no-repeat';
+        }
+        front.style.backgroundColor = bgCss;
+
+        const back = document.createElement('div');
+        back.className = 'hp__strip-back';
+        back.style.backgroundPosition = `${-k * w}px 0`;
+        back.style.backgroundSize = `${W}px ${H}px`;
+
+        strip.append(front, back);
+        parent.appendChild(strip);
+        parent = strip;
+        strips.push({ el: strip, front, back, t: n / (N - 1) });
+      }
 
       const media = this.querySelector('.hp__media');
       media.after(shadow, flip);
       this.swapMedia(from, to, true);
       this.swapContent(from, to, duration * 0.45);
 
-      requestAnimationFrame(() => {
-        flip.classList.add('is-turning');
-        shadow.classList.add('is-turning');
-      });
+      const sign = next ? -1 : 1;
+      const curl = 0.65;
+      const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+      const clamp = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      let start = null;
 
-      const done = () => {
-        flip.remove();
-        shadow.remove();
-        this.finish();
+      const frame = (now) => {
+        if (start === null) start = now;
+        const p = clamp((now - start) / duration);
+        let prevAbs = 0;
+
+        strips.forEach((s, n) => {
+          const local = clamp(p * (1 + curl) - curl * (1 - s.t));
+          const abs = 180 * ease(local);
+          const rel = n === 0 ? abs : abs - prevAbs;
+          prevAbs = abs;
+          s.el.style.transform = `rotateY(${(sign * rel).toFixed(2)}deg)`;
+          const rad = (abs * Math.PI) / 180;
+          s.front.style.setProperty('--shade', (Math.min(abs, 90) / 90 * 0.55).toFixed(3));
+          s.front.style.setProperty('--gloss', (Math.sin(rad * 2) > 0 ? Math.sin(rad * 2) * 0.35 : 0).toFixed(3));
+          s.back.style.setProperty('--shade', (Math.max(0, 180 - abs) / 90 * 0.3).toFixed(3));
+        });
+
+        shadow.style.opacity = (Math.sin(Math.PI * p) * 0.85).toFixed(3);
+        shadow.style.setProperty('--edge', `${((1 - p) * 100).toFixed(1)}%`);
+
+        if (p < 1) {
+          this.raf = requestAnimationFrame(frame);
+        } else {
+          flip.remove();
+          shadow.remove();
+          this.finish();
+        }
       };
-      flip.addEventListener('animationend', done, { once: true });
-      setTimeout(() => flip.isConnected && done(), duration + 300);
+
+      this.raf = requestAnimationFrame(frame);
     }
 
     runSlide(from, to, dir) {
