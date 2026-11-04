@@ -121,6 +121,22 @@
   -webkit-backface-visibility: hidden;
 }
 
+.hp__strip-front {
+  overflow: hidden;
+}
+
+.hp__strip-front img {
+  position: absolute;
+  max-width: none;
+  display: block;
+}
+
+.hp__strip-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
 .hp__strip-front::after,
 .hp__strip-back::after {
   content: '';

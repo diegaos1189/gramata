@@ -303,7 +303,7 @@
       return { src: img.currentSrc || img.src, dw, dh, dx: (W - dw) / 2, dy: (H - dh) / 2, overlay };
     }
 
-    runPage(from, to, dir) {
+    async runPage(from, to, dir) {
       const duration = Math.max(this.duration, 900);
       const { W, H } = this.size();
       const next = dir > 0;
@@ -322,6 +322,7 @@
       shadow.dataset.dir = flip.dataset.dir;
 
       const strips = [];
+      const stripImages = [];
       let parent = flip;
       for (let n = 0; n < N; n++) {
         const k = next ? n : N - 1 - n;
@@ -337,18 +338,26 @@
 
         const front = document.createElement('div');
         front.className = 'hp__strip-front';
-        const layers = [];
-        if (info.overlay > 0) layers.push(`linear-gradient(rgba(0,0,0,${info.overlay}),rgba(0,0,0,${info.overlay}))`);
-        if (info.src) {
-          layers.push(`url("${info.src}")`);
-          front.style.backgroundImage = layers.join(',');
-          const size = `${info.dw}px ${info.dh}px`;
-          const pos = `${info.dx - k * w}px ${info.dy}px`;
-          front.style.backgroundSize = info.overlay > 0 ? `100% 100%, ${size}` : size;
-          front.style.backgroundPosition = info.overlay > 0 ? `0 0, ${pos}` : pos;
-          front.style.backgroundRepeat = 'no-repeat';
-        }
         front.style.backgroundColor = bgCss;
+        if (info.src) {
+          const im = document.createElement('img');
+          im.crossOrigin = 'anonymous';
+          im.alt = '';
+          im.decoding = 'sync';
+          im.src = info.src;
+          im.style.left = `${info.dx - k * w}px`;
+          im.style.top = `${info.dy}px`;
+          im.style.width = `${info.dw}px`;
+          im.style.height = `${info.dh}px`;
+          front.appendChild(im);
+          stripImages.push(im);
+        }
+        if (info.overlay > 0) {
+          const ov = document.createElement('div');
+          ov.className = 'hp__strip-overlay';
+          ov.style.opacity = info.overlay;
+          front.appendChild(ov);
+        }
 
         const back = document.createElement('div');
         back.className = 'hp__strip-back';
@@ -361,8 +370,14 @@
         strips.push({ el: strip, front, back, t: n / (N - 1) });
       }
 
+      flip.style.visibility = 'hidden';
       const media = this.querySelector('.hp__media');
       media.after(shadow, flip);
+      await Promise.race([
+        Promise.all(stripImages.map((im) => (im.decode ? im.decode().catch(() => {}) : null))),
+        new Promise((resolve) => setTimeout(resolve, 600)),
+      ]);
+      flip.style.visibility = '';
       this.swapMedia(from, to, true);
       this.swapContent(from, to, duration * 0.45);
 
