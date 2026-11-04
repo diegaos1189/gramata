@@ -46,7 +46,7 @@
 
 <hero-particles
   id="{{ hp_id }}"
-  class="hp hp--{{ section.settings.layout }}{% if section.settings.autoplay and section.blocks.size > 1 %} hp--autoplay{% endif %}"
+  class="hp hp--{{ section.settings.layout }} hp--controls-{{ section.settings.controls }}{% if section.settings.autoplay and section.blocks.size > 1 %} hp--autoplay{% endif %}"
   data-transition="{{ section.settings.transition }}"
   data-autoplay="{{ section.settings.autoplay }}"
   data-duration="{{ section.settings.duration }}"
@@ -230,6 +230,17 @@
       "default": "page"
     },
     { "type": "checkbox", "id": "autoplay", "label": "Cambio automático", "default": true },
+    {
+      "type": "select",
+      "id": "controls",
+      "label": "Controles (contador, barras y flechas)",
+      "options": [
+        { "value": "hidden", "label": "Ocultos (imagen limpia)" },
+        { "value": "hover", "label": "Al pasar el mouse" },
+        { "value": "always", "label": "Siempre visibles" }
+      ],
+      "default": "hidden"
+    },
     { "type": "range", "id": "speed", "label": "Tiempo por diapositiva", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
     { "type": "range", "id": "duration", "label": "Duración de la transición", "min": 600, "max": 3600, "step": 100, "unit": "ms", "default": 1400 },
     { "type": "range", "id": "particle_size", "label": "Tamaño de partícula", "info": "Más pequeño = más detalle, más exigente para el equipo.", "min": 3, "max": 10, "step": 1, "unit": "px", "default": 5 },

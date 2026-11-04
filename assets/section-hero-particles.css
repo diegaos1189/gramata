@@ -393,6 +393,34 @@
   transform: translateZ(80px);
 }
 
+.hp__controls {
+  transition: opacity 0.4s ease;
+}
+
+.hp--controls-hidden .hp__controls,
+.hp--controls-hover .hp__controls {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hp--controls-hover:hover .hp__controls,
+.hp--controls-hover:focus-within .hp__controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: none) {
+  .hp--controls-hover .hp__controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.hp.hp--controls-hidden:hover:not(.is-offscreen):not(.is-hidden-tab) .hp__bar.is-active span::after,
+.hp.hp--controls-hidden:focus-within:not(.is-offscreen):not(.is-hidden-tab) .hp__bar.is-active span::after {
+  animation-play-state: running;
+}
+
 .hp__counter {
   flex-shrink: 0;
   font-size: 1.3rem;
