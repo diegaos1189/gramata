@@ -1,0 +1,266 @@
+{{ 'section-hero-particles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hero-particles.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign first = section.blocks.first
+  assign hp_id = 'HeroParticles-' | append: section.id
+-%}
+
+{%- style -%}
+  #{{ hp_id }} {
+    --hp-bg: {{ section.settings.background }};
+    --hp-max: {{ section.settings.max_width }}px;
+    --hp-radius: {{ section.settings.radius }}px;
+    --hp-fit: {{ section.settings.image_fit }};
+    --hp-speed: {{ section.settings.speed }}s;
+  }
+
+  {%- if section.settings.height_mode == 'adapt' and first.settings.image != blank -%}
+    #{{ hp_id }} .hp__stage {
+      aspect-ratio: {{ first.settings.image.aspect_ratio }};
+    }
+
+    @media screen and (max-width: 749px) {
+      #{{ hp_id }} .hp__stage {
+        {%- if first.settings.image_mobile != blank %}
+          aspect-ratio: {{ first.settings.image_mobile.aspect_ratio }};
+        {%- else %}
+          min-height: 24rem;
+        {%- endif %}
+      }
+    }
+  {%- else -%}
+    #{{ hp_id }} .hp__stage {
+      height: {{ section.settings.height_desktop }}vh;
+      min-height: 42rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      #{{ hp_id }} .hp__stage {
+        height: {{ section.settings.height_mobile }}vh;
+        min-height: 36rem;
+      }
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<hero-particles
+  id="{{ hp_id }}"
+  class="hp hp--{{ section.settings.layout }}{% if section.settings.autoplay and section.blocks.size > 1 %} hp--autoplay{% endif %}"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-duration="{{ section.settings.duration }}"
+  data-particle="{{ section.settings.particle_size }}"
+  data-fit="{{ section.settings.image_fit }}"
+  data-bg="{{ section.settings.background }}"
+  data-tilt="{% if section.settings.tilt and section.settings.layout == 'contained' %}true{% else %}false{% endif %}"
+>
+  <div class="hp__frame">
+    <div
+      class="hp__stage"
+      tabindex="0"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="{{ section.settings.accessibility_label | escape }}"
+    >
+      <div class="hp__media">
+        {%- for block in section.blocks -%}
+          <div
+            class="hp__slide-media{% if forloop.first %} is-active{% endif %}"
+            data-overlay="{{ block.settings.overlay | divided_by: 100.0 }}"
+          >
+            {%- if block.settings.image != blank -%}
+              <picture>
+                {%- if block.settings.image_mobile != blank -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="{{ block.settings.image_mobile | image_url: width: 750 }} 750w, {{ block.settings.image_mobile | image_url: width: 1100 }} 1100w, {{ block.settings.image_mobile | image_url: width: 1500 }} 1500w"
+                    sizes="100vw"
+                  >
+                {%- endif -%}
+                {%- if forloop.first -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 2400
+                    | image_tag:
+                      class: 'hp__img',
+                      widths: '750, 1100, 1500, 1920, 2400',
+                      sizes: '(min-width: 1400px) 1400px, 100vw',
+                      fetchpriority: 'high',
+                      crossorigin: 'anonymous',
+                      alt: block.settings.image.alt
+                  }}
+                {%- else -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 2400
+                    | image_tag:
+                      class: 'hp__img',
+                      widths: '750, 1100, 1500, 1920, 2400',
+                      sizes: '(min-width: 1400px) 1400px, 100vw',
+                      loading: 'lazy',
+                      crossorigin: 'anonymous',
+                      alt: block.settings.image.alt
+                  }}
+                {%- endif -%}
+              </picture>
+            {%- else -%}
+              <div class="hp__placeholder">
+                {{ 'hero-apparel-1' | placeholder_svg_tag }}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.overlay > 0 -%}
+              <div class="hp__overlay" style="opacity: {{ block.settings.overlay | divided_by: 100.0 }}"></div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <canvas class="hp__canvas" aria-hidden="true"></canvas>
+
+      <div class="hp__content-layer">
+        {%- for block in section.blocks -%}
+          <div
+            class="hp__content hp__content--{{ block.settings.align }}{% if forloop.first %} is-active{% endif %}"
+            style="--hp-text: {{ block.settings.text_color }};"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.link != blank and block.settings.button_label == blank -%}
+              <a class="hp__slide-link" href="{{ block.settings.link }}" aria-label="{{ block.settings.heading | strip_html | default: block.settings.image.alt | escape }}"></a>
+            {%- endif -%}
+            {%- if block.settings.eyebrow != blank -%}
+              <p class="hp__eyebrow" style="--hp-d: 0">{{ block.settings.eyebrow }}</p>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h2 class="hp__title" style="--hp-d: 120">{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="hp__text" style="--hp-d: 240">{{ block.settings.text }}</p>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <a class="hp__btn" href="{{ block.settings.link | default: '#' }}" style="--hp-d: 360">
+                {{ block.settings.button_label }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="hp__controls">
+          <div class="hp__counter">
+            <strong data-hp-current>01</strong>
+            / {{ section.blocks.size | prepend: '0' | slice: -2, 2 }}
+          </div>
+          <div class="hp__bars">
+            {%- for block in section.blocks -%}
+              <button type="button" class="hp__bar" aria-label="Ir a la diapositiva {{ forloop.index }}">
+                <span></span>
+              </button>
+            {%- endfor -%}
+          </div>
+          <div class="hp__arrows">
+            <button type="button" class="hp__arrow" data-hp-prev aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+            </button>
+            <button type="button" class="hp__arrow" data-hp-next aria-label="Siguiente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</hero-particles>
+
+{% schema %}
+{
+  "name": "Hero partículas 3D",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Diseño",
+      "options": [
+        { "value": "contained", "label": "Tarjeta cinematográfica" },
+        { "value": "full", "label": "Ancho completo" }
+      ],
+      "default": "contained"
+    },
+    { "type": "range", "id": "max_width", "label": "Ancho máximo (tarjeta)", "min": 1000, "max": 1800, "step": 50, "unit": "px", "default": 1400 },
+    { "type": "range", "id": "radius", "label": "Bordes redondeados (tarjeta)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 24 },
+    {
+      "type": "select",
+      "id": "height_mode",
+      "label": "Altura",
+      "options": [
+        { "value": "adapt", "label": "Adaptar a la primera imagen" },
+        { "value": "fixed", "label": "Altura fija" }
+      ],
+      "default": "adapt"
+    },
+    { "type": "range", "id": "height_desktop", "label": "Altura escritorio (fija)", "min": 40, "max": 100, "step": 5, "unit": "vh", "default": 80 },
+    { "type": "range", "id": "height_mobile", "label": "Altura móvil (fija)", "min": 40, "max": 100, "step": 5, "unit": "vh", "default": 70 },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de imagen",
+      "info": "\"Completa\" nunca recorta la imagen (útil para banners con texto).",
+      "options": [
+        { "value": "cover", "label": "Rellenar (puede recortar)" },
+        { "value": "contain", "label": "Completa (sin recorte)" }
+      ],
+      "default": "cover"
+    },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#120c0d" },
+    { "type": "header", "content": "Animación" },
+    { "type": "checkbox", "id": "autoplay", "label": "Cambio automático", "default": true },
+    { "type": "range", "id": "speed", "label": "Tiempo por diapositiva", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
+    { "type": "range", "id": "duration", "label": "Duración de la transición", "min": 1200, "max": 3600, "step": 200, "unit": "ms", "default": 2200 },
+    { "type": "range", "id": "particle_size", "label": "Tamaño de partícula", "info": "Más pequeño = más detalle, más exigente para el equipo.", "min": 3, "max": 10, "step": 1, "unit": "px", "default": 5 },
+    { "type": "checkbox", "id": "tilt", "label": "Inclinación 3D con el mouse (tarjeta)", "default": true },
+    { "type": "text", "id": "accessibility_label", "label": "Descripción para accesibilidad", "default": "Destacados de la librería" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Diapositiva",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "image_picker", "id": "image_mobile", "label": "Imagen móvil (opcional)" },
+        { "type": "range", "id": "overlay", "label": "Oscurecer imagen", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 0 },
+        { "type": "text", "id": "eyebrow", "label": "Texto superior" },
+        { "type": "inline_richtext", "id": "heading", "label": "Título" },
+        { "type": "textarea", "id": "text", "label": "Texto" },
+        { "type": "text", "id": "button_label", "label": "Texto del botón" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Sin texto de botón, toda la diapositiva es clicable." },
+        {
+          "type": "select",
+          "id": "align",
+          "label": "Alineación del texto",
+          "options": [
+            { "value": "left", "label": "Izquierda" },
+            { "value": "center", "label": "Centro" },
+            { "value": "right", "label": "Derecha" }
+          ],
+          "default": "left"
+        },
+        { "type": "color", "id": "text_color", "label": "Color del texto", "default": "#ffffff" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero partículas 3D",
+      "blocks": [
+        { "type": "slide", "settings": { "eyebrow": "Novedades", "heading": "Historias que se quedan <em>contigo</em>", "button_label": "Explorar catálogo", "overlay": 30 } },
+        { "type": "slide", "settings": { "eyebrow": "Editorial Grámmata", "heading": "Ediciones que se <em>sienten</em>", "button_label": "Ver ediciones", "overlay": 30 } },
+        { "type": "slide", "settings": { "eyebrow": "Distribuidora", "heading": "Libros para todo <em>Colombia</em>", "button_label": "Conocer más", "overlay": 30 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
