@@ -12,6 +12,20 @@
     "hero_particles": {
       "type": "hero-particles",
       "blocks": {
+        "slide_xDjVPN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1850X505_4x-100_1.jpg",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -28,6 +42,7 @@
         }
       },
       "block_order": [
+        "slide_xDjVPN",
         "slide_1"
       ],
       "settings": {
