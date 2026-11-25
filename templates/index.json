@@ -288,7 +288,7 @@
         "heading": "",
         "text": "",
         "button_label": "",
-        "button_link": "shopify://collections/editorial-planeta",
+        "button_link": "shopify://collections/urano",
         "banner_width": 1400,
         "adapt_height": true,
         "banner_height": 500,
@@ -301,7 +301,7 @@
       "settings": {
         "collection": "urano",
         "products_to_show": 12,
-        "eyebrow": "EDITORIAL PENGUIN",
+        "eyebrow": "EDITORIAL URANO",
         "eyebrow_size": 28,
         "title": "",
         "heading_size": "h1",
