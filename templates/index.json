@@ -26,6 +26,20 @@
             "text_color": "#ffffff"
           }
         },
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-11-24_at_3.28.28_PM.jpg",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://collections/editorial-penguin",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
         "slide_xDjVPN": {
           "type": "slide",
           "settings": {
@@ -39,26 +53,12 @@
             "align": "left",
             "text_color": "#ffffff"
           }
-        },
-        "slide_1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/WhatsApp_Image_2026-11-24_at_3.28.28_PM.jpg",
-            "overlay": 0,
-            "eyebrow": "",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": "shopify://collections/libreria-online-1",
-            "align": "left",
-            "text_color": "#ffffff"
-          }
         }
       },
       "block_order": [
         "slide_YXzXYN",
-        "slide_xDjVPN",
-        "slide_1"
+        "slide_1",
+        "slide_xDjVPN"
       ],
       "settings": {
         "layout": "full",
