@@ -142,17 +142,6 @@
         "padding_bottom": 0
       }
     },
-    "frequently-bought-together": {
-      "type": "frequently-bought-together",
-      "settings": {
-        "heading": "Frecuentemente comprados juntos",
-        "heading_size": "h1",
-        "button_label": "Agregar seleccionados al carrito",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -176,7 +165,6 @@
     "main",
     "trust-badges",
     "disclosures",
-    "frequently-bought-together",
     "related-products"
   ]
 }

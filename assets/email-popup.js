@@ -1,5 +1,6 @@
 class EmailPopup extends HTMLElement {
   static COOKIE_NAME = 'email-popup-dismissed';
+  static SCROLL_THRESHOLD = 0.5;
 
   connectedCallback() {
     this.querySelectorAll('[data-popup-close]').forEach((el) =>
@@ -9,14 +10,6 @@ class EmailPopup extends HTMLElement {
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && !this.hidden) this.close();
     });
-
-    const posted = this.querySelector('.email-popup__success');
-    if (posted) {
-      this.hidden = false;
-    } else if (!this.wasDismissed()) {
-      const delay = Number(this.dataset.delay || 0);
-      this.timer = window.setTimeout(() => this.open(), delay);
-    }
 
     const copyButton = this.querySelector('[data-copy-button]');
     const codeValue = this.querySelector('.email-popup__code-value');
@@ -33,6 +26,52 @@ class EmailPopup extends HTMLElement {
         });
       });
     }
+
+    const posted = this.querySelector('.email-popup__success');
+    if (posted) {
+      this.open();
+      this.setDismissedCookie(3650);
+      return;
+    }
+
+    if (this.wasDismissed()) return;
+
+    this.minDelay = Number(this.dataset.delay || 0);
+    this.readyAt = Date.now() + this.minDelay;
+    this.armTriggers();
+  }
+
+  armTriggers() {
+    this.onScroll = this.onScroll.bind(this);
+    this.onMouseOut = this.onMouseOut.bind(this);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('mouseout', this.onMouseOut);
+  }
+
+  disarmTriggers() {
+    window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('mouseout', this.onMouseOut);
+  }
+
+  isReady() {
+    return Date.now() >= this.readyAt;
+  }
+
+  onScroll() {
+    if (!this.isReady()) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+    if (ratio >= EmailPopup.SCROLL_THRESHOLD) {
+      this.disarmTriggers();
+      this.open();
+    }
+  }
+
+  onMouseOut(event) {
+    if (!this.isReady()) return;
+    if (event.clientY > 0 || event.relatedTarget) return;
+    this.disarmTriggers();
+    this.open();
   }
 
   wasDismissed() {
@@ -41,14 +80,17 @@ class EmailPopup extends HTMLElement {
 
   open() {
     this.hidden = false;
-    document.body.style.overflow = 'hidden';
     this.querySelector('input[type="email"]')?.focus();
   }
 
   close() {
     this.hidden = true;
-    document.body.style.overflow = '';
+    this.disarmTriggers();
     const days = Number(this.dataset.cookieDays || 14);
+    this.setDismissedCookie(days);
+  }
+
+  setDismissedCookie(days) {
     const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
     document.cookie = `${EmailPopup.COOKIE_NAME}=1; expires=${expires}; path=/`;
   }

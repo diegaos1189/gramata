@@ -409,7 +409,7 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {%- unless request.page_type == 'password' -%}
+    {%- unless request.page_type == 'password' or request.page_type == 'cart' -%}
       {% section 'email-popup' %}
     {%- endunless -%}
   </body>
