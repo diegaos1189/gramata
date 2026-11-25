@@ -1,0 +1,65 @@
+.restock-notify {
+  display: block;
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+  border-radius: var(--inputs-radius, 8px);
+  background: rgba(var(--color-foreground), 0.03);
+}
+
+.restock-notify__heading {
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+.restock-notify__text {
+  font-size: 1.3rem;
+  opacity: 0.75;
+  margin: 0 0 1.2rem;
+}
+
+.restock-notify__field-wrapper {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.restock-notify__field-wrapper .field {
+  flex: 1 1 20rem;
+}
+
+.restock-notify__button {
+  flex: 0 0 auto;
+}
+
+.restock-notify__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.restock-notify__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.restock-notify__consent input {
+  margin-top: 0.2rem;
+}
+
+.restock-notify__status {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
+.restock-notify__status[data-error] {
+  color: rgb(var(--color-error, 185, 20, 20));
+}

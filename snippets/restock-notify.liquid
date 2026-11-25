@@ -1,0 +1,47 @@
+{% comment %}
+  Renders a "notify me when back in stock" form for a sold-out product.
+  Accepts:
+  - product: {Object} Product Liquid object
+{% endcomment %}
+{%- if settings.restock_webhook_url != blank -%}
+  {{ 'component-restock-notify.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'restock-notify.js' | asset_url }}" defer="defer"></script>
+
+  <restock-notify
+    class="restock-notify"
+    data-webhook-url="{{ settings.restock_webhook_url }}"
+    data-product-id="{{ product.id }}"
+  >
+    <p class="restock-notify__heading">{{ 'products.product.restock_notify.heading' | t }}</p>
+    <p class="restock-notify__text">{{ 'products.product.restock_notify.text' | t }}</p>
+
+    <form class="restock-notify__form" data-restock-form>
+      <div class="restock-notify__field-wrapper">
+        <div class="field">
+          <input
+            type="email"
+            name="email"
+            class="field__input"
+            placeholder="{{ 'products.product.restock_notify.placeholder' | t }}"
+            aria-label="{{ 'products.product.restock_notify.placeholder' | t }}"
+            autocomplete="email"
+            required
+          >
+          <label class="field__label">{{ 'products.product.restock_notify.placeholder' | t }}</label>
+        </div>
+        <button type="submit" class="button button--secondary restock-notify__button">
+          {{ 'products.product.restock_notify.button' | t }}
+        </button>
+      </div>
+
+      <input type="text" name="company" class="restock-notify__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <label class="restock-notify__consent">
+        <input type="checkbox" name="consent" required>
+        <span>{{ 'products.product.restock_notify.consent_html' | t }}</span>
+      </label>
+
+      <p class="restock-notify__status" data-restock-status role="status" aria-live="polite" hidden></p>
+    </form>
+  </restock-notify>
+{%- endif -%}

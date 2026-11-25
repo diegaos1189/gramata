@@ -116,6 +116,13 @@
   },
   "products": {
     "product": {
+      "restock_notify": {
+        "heading": "Avísame cuando llegue",
+        "text": "Te escribimos apenas vuelva a estar disponible.",
+        "placeholder": "tu@correo.com",
+        "button": "Avísame",
+        "consent_html": "Autorizo el tratamiento de mis datos según la <a href=\"/policies/privacy-policy\">política de privacidad</a>."
+      },
       "add_to_cart": "Agregar al carrito",
       "preorder": "Reservar ahora",
       "choose_options": "Seleccionar opciones",

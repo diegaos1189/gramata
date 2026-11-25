@@ -1484,6 +1484,20 @@
     ]
   },
   {
+    "name": "Avísame cuando llegue",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "URL del webhook que recibe los correos de aviso de reposición (Cloudflare Worker)."
+      },
+      {
+        "type": "url",
+        "id": "restock_webhook_url",
+        "label": "URL del webhook de reposición"
+      }
+    ]
+  },
+  {
     "name": "Genero y catálogo de libros",
     "settings": [
       {
