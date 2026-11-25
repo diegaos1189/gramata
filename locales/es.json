@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "home": "Inicio",
+      "label": "Migas de pan"
+    },
     "home_seo_title": "Librería Grámmata: libros en línea con envío a toda Colombia",
     "password_page": {
       "login_form_heading": "Entrar a la tienda usando contraseña:",
