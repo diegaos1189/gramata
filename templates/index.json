@@ -9,8 +9,94 @@
  */
 {
   "sections": {
+    "hero_particles": {
+      "type": "hero-particles",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Oferta_infantil_3x2_con_monstruos_y_libros.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://collections/libreria-online-1",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1767X390_4x-8.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://products/las-cadenas-del-rey-edicion-de-lujo",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1767X390.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://products/el-circulo-de-la-felicidad-paulo-coelho",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1920X350.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4"
+      ],
+      "settings": {
+        "layout": "full",
+        "max_width": 1400,
+        "radius": 0,
+        "height_mode": "adapt",
+        "height_desktop": 80,
+        "height_mobile": 70,
+        "image_fit": "contain",
+        "background": "#120c0d",
+        "transition": "page",
+        "autoplay": true,
+        "controls": "hidden",
+        "speed": 6,
+        "duration": 1400,
+        "particle_size": 5,
+        "tilt": true,
+        "accessibility_label": "Destacados de la librería"
+      }
+    },
     "cinematic_hero": {
       "type": "cinematic-banner",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/Oferta_infantil_3x2_con_monstruos_y_libros.png",
         "heading": "",
@@ -21,8 +107,7 @@
         "adapt_height": true,
         "banner_height": 400,
         "banner_radius": 24
-      },
-      "disabled": true
+      }
     },
     "trust_badges": {
       "type": "trust-badges",
@@ -219,90 +304,6 @@
         "full_width": true,
         "padding_top": 52,
         "padding_bottom": 52
-      }
-    },
-    "hero_particles": {
-      "type": "hero-particles",
-      "blocks": {
-        "slide_1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Oferta_infantil_3x2_con_monstruos_y_libros.png",
-            "overlay": 0,
-            "eyebrow": "",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": "shopify://collections/libreria-online-1",
-            "align": "left",
-            "text_color": "#ffffff"
-          }
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1767X390_4x-8.png",
-            "overlay": 0,
-            "eyebrow": "",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": "shopify://products/las-cadenas-del-rey-edicion-de-lujo",
-            "align": "left",
-            "text_color": "#ffffff"
-          }
-        },
-        "slide_3": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1767X390.png",
-            "overlay": 0,
-            "eyebrow": "",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": "shopify://products/el-circulo-de-la-felicidad-paulo-coelho",
-            "align": "left",
-            "text_color": "#ffffff"
-          }
-        },
-        "slide_4": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1920X350.png",
-            "overlay": 0,
-            "eyebrow": "",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": "",
-            "align": "left",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "slide_1",
-        "slide_2",
-        "slide_3",
-        "slide_4"
-      ],
-      "settings": {
-        "layout": "contained",
-        "max_width": 1400,
-        "radius": 24,
-        "height_mode": "adapt",
-        "height_desktop": 80,
-        "height_mobile": 70,
-        "image_fit": "contain",
-        "background": "#120c0d",
-        "autoplay": true,
-        "speed": 6,
-        "duration": 1400,
-        "particle_size": 5,
-        "tilt": true,
-        "accessibility_label": "Destacados de la librería",
-        "transition": "page"
       }
     }
   },
