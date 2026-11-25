@@ -281,6 +281,54 @@
         "padding_bottom": 36
       }
     },
+    "cinematic_banner_8czmUr": {
+      "type": "cinematic-banner",
+      "settings": {
+        "image": "shopify://shop_images/02.png",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://collections/editorial-planeta",
+        "banner_width": 1400,
+        "adapt_height": true,
+        "banner_height": 500,
+        "banner_radius": 0
+      }
+    },
+    "featured_collection_hLgDKG": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "urano",
+        "products_to_show": 12,
+        "eyebrow": "EDITORIAL PENGUIN",
+        "eyebrow_size": 28,
+        "title": "",
+        "heading_size": "h1",
+        "heading_color": "#922F2F",
+        "show_divider": true,
+        "accent_color": "#922F2F",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 6,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-2",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "email_signup": {
       "type": "newsletter",
       "blocks": {
@@ -324,6 +372,8 @@
     "cinematic_banner_2",
     "featured_collection_mG3j9G",
     "featured_collection_ChGzhE",
+    "cinematic_banner_8czmUr",
+    "featured_collection_hLgDKG",
     "email_signup"
   ]
 }
