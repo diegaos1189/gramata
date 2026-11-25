@@ -12,6 +12,20 @@
     "hero_particles": {
       "type": "hero-particles",
       "blocks": {
+        "slide_YXzXYN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/02.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://collections/editorial-planeta",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
         "slide_xDjVPN": {
           "type": "slide",
           "settings": {
@@ -42,6 +56,7 @@
         }
       },
       "block_order": [
+        "slide_YXzXYN",
         "slide_xDjVPN",
         "slide_1"
       ],
@@ -184,32 +199,10 @@
         "padding_bottom": 36
       }
     },
-    "collection_carousel_editorial": {
-      "type": "collection-carousel",
-      "settings": {
-        "title": "Editorial Grammata",
-        "description": "Nuestras propias ediciones, cuidadas hasta el último detalle",
-        "title_size": 40,
-        "description_size": 18,
-        "collection": "editorial-grammata",
-        "products_to_show": 10,
-        "items_per_view": 4,
-        "show_controls": true,
-        "show_view_all": true,
-        "view_all_text": "Ver toda la colección",
-        "enable_autoplay": true,
-        "autoplay_speed": 5000,
-        "accent_color": "#6b2737",
-        "text_color": "#2b2620",
-        "background_color": "#faf6f0",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "cinematic_banner_2": {
       "type": "cinematic-banner",
       "settings": {
-        "image": "shopify://shop_images/WhatsApp_Image_2026-10-05_at_9.54.37_PM.jpg",
+        "image": "shopify://shop_images/1850X505_4x-100_1.jpg",
         "heading": "",
         "text": "",
         "button_label": "",
@@ -217,7 +210,7 @@
         "banner_width": 1400,
         "adapt_height": true,
         "banner_height": 500,
-        "banner_radius": 24
+        "banner_radius": 0
       }
     },
     "featured_collection_mG3j9G": {
@@ -316,7 +309,6 @@
     "trust_badges",
     "featured_collection",
     "featured_collection_BX37Tg",
-    "collection_carousel_editorial",
     "cinematic_banner_2",
     "featured_collection_mG3j9G",
     "collection_carousel_penguin",
