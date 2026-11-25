@@ -220,7 +220,7 @@
         "collection": "editorial-planeta",
         "products_to_show": 12,
         "eyebrow": "EDITORIAL PLANETA",
-        "eyebrow_size": 22,
+        "eyebrow_size": 28,
         "title": "",
         "heading_size": "h1",
         "heading_color": "",
@@ -247,26 +247,38 @@
         "padding_bottom": 36
       }
     },
-    "collection_carousel_penguin": {
-      "type": "collection-carousel",
+    "featured_collection_ChGzhE": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "title": "Penguin Random House",
-        "description": "Los títulos más buscados de uno de los sellos editoriales más grandes del mundo",
-        "title_size": 40,
-        "description_size": 18,
         "collection": "editorial-penguin",
-        "products_to_show": 10,
-        "items_per_view": 4,
-        "show_controls": true,
+        "products_to_show": 12,
+        "eyebrow": "EDITORIAL PENGUIN",
+        "eyebrow_size": 28,
+        "title": "",
+        "heading_size": "h1",
+        "heading_color": "",
+        "show_divider": true,
+        "accent_color": "",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 6,
+        "enable_desktop_slider": false,
+        "full_width": false,
         "show_view_all": true,
-        "view_all_text": "Ver todo Penguin Random House",
-        "enable_autoplay": false,
-        "autoplay_speed": 5000,
-        "accent_color": "#2b2620",
-        "text_color": "#2b2620",
-        "background_color": "#ffffff",
-        "padding_top": 60,
-        "padding_bottom": 60
+        "view_all_style": "outline",
+        "color_scheme": "scheme-2",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "email_signup": {
@@ -311,7 +323,7 @@
     "featured_collection_edNJTj",
     "cinematic_banner_2",
     "featured_collection_mG3j9G",
-    "collection_carousel_penguin",
+    "featured_collection_ChGzhE",
     "email_signup"
   ]
 }
