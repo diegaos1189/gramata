@@ -12,16 +12,16 @@
     "hero_particles": {
       "type": "hero-particles",
       "blocks": {
-        "slide_YXzXYN": {
+        "slide_b8mtCh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/02.png",
+            "image": "shopify://shop_images/WhatsApp_Image_2026-11-25_at_11.16.23_AM.jpg",
             "overlay": 0,
             "eyebrow": "",
             "heading": "",
             "text": "",
             "button_label": "",
-            "link": "shopify://collections/editorial-planeta",
+            "link": "",
             "align": "left",
             "text_color": "#ffffff"
           }
@@ -36,6 +36,20 @@
             "text": "",
             "button_label": "",
             "link": "shopify://collections/editorial-penguin",
+            "align": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_YXzXYN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/02.png",
+            "overlay": 0,
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": "shopify://collections/editorial-planeta",
             "align": "left",
             "text_color": "#ffffff"
           }
@@ -56,8 +70,9 @@
         }
       },
       "block_order": [
-        "slide_YXzXYN",
+        "slide_b8mtCh",
         "slide_1",
+        "slide_YXzXYN",
         "slide_xDjVPN"
       ],
       "settings": {
@@ -223,9 +238,9 @@
         "eyebrow_size": 28,
         "title": "",
         "heading_size": "h1",
-        "heading_color": "#922F2F",
+        "heading_color": "#922f2f",
         "show_divider": true,
-        "accent_color": "#922F2F",
+        "accent_color": "#922f2f",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -257,9 +272,9 @@
         "eyebrow_size": 28,
         "title": "",
         "heading_size": "h1",
-        "heading_color": "#922F2F",
+        "heading_color": "#922f2f",
         "show_divider": true,
-        "accent_color": "#922F2F",
+        "accent_color": "#922f2f",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -305,9 +320,9 @@
         "eyebrow_size": 28,
         "title": "",
         "heading_size": "h1",
-        "heading_color": "#922F2F",
+        "heading_color": "#922f2f",
         "show_divider": true,
-        "accent_color": "#922F2F",
+        "accent_color": "#922f2f",
         "description": "",
         "show_description": false,
         "description_style": "body",
