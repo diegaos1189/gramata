@@ -17,8 +17,8 @@ wishlist-button {
   height: 3.6rem;
   padding: 0;
   border: none;
-  border-radius: 50%;
-  background: rgba(var(--color-background), 0.85);
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
 }
 
