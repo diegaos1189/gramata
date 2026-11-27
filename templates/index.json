@@ -94,6 +94,21 @@
         "accessibility_label": "Destacados de la librería"
       }
     },
+    "cinematic_banner_cMtkAW": {
+      "type": "cinematic-banner",
+      "name": "Banner cinemático",
+      "settings": {
+        "image": "shopify://shop_images/gramata.jpg",
+        "heading": "",
+        "text": "",
+        "button_label": "Comprar ahora",
+        "button_link": "",
+        "banner_width": 1400,
+        "adapt_height": true,
+        "banner_height": 550,
+        "banner_radius": 28
+      }
+    },
     "cinematic_hero": {
       "type": "cinematic-banner",
       "disabled": true,
@@ -390,25 +405,11 @@
         "banner_height": 550,
         "banner_radius": 28
       }
-    },
-    "cinematic_banner_cMtkAW": {
-      "type": "cinematic-banner",
-      "name": "Banner cinemático",
-      "settings": {
-        "image": "shopify://shop_images/gramata.jpg",
-        "heading": "",
-        "text": "",
-        "button_label": "Comprar ahora",
-        "button_link": "",
-        "banner_width": 1400,
-        "adapt_height": true,
-        "banner_height": 550,
-        "banner_radius": 28
-      }
     }
   },
   "order": [
     "hero_particles",
+    "cinematic_banner_cMtkAW",
     "cinematic_hero",
     "trust_badges",
     "featured_collection",
@@ -419,7 +420,6 @@
     "cinematic_banner_8czmUr",
     "featured_collection_hLgDKG",
     "email_signup",
-    "cinematic_banner_ridx3a",
-    "cinematic_banner_cMtkAW"
+    "cinematic_banner_ridx3a"
   ]
 }
