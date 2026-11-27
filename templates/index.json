@@ -396,8 +396,8 @@
       "name": "Banner cinemático",
       "settings": {
         "image": "shopify://shop_images/gramata.jpg",
-        "heading": "Black Weekend",
-        "text": "referencias seleccionadas",
+        "heading": "",
+        "text": "",
         "button_label": "Comprar ahora",
         "button_link": "",
         "banner_width": 1400,
