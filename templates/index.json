@@ -94,55 +94,6 @@
         "accessibility_label": "Destacados de la librería"
       }
     },
-    "image_banner_JDh4ea": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_bcKckE": {
-          "type": "heading",
-          "settings": {
-            "heading": "Banner de imagen",
-            "heading_size": "h1"
-          }
-        },
-        "text_NYXxBA": {
-          "type": "text",
-          "settings": {
-            "text": "Ofrece a los clientes información sobre las imágenes del banner o el contenido de la plantilla.",
-            "text_style": "body"
-          }
-        },
-        "buttons_rLpkix": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Etiqueta de botón",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Etiqueta de botón",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_bcKckE",
-        "text_NYXxBA",
-        "buttons_rLpkix"
-      ],
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/gramata.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "cinematic_hero": {
       "type": "cinematic-banner",
       "disabled": true,
@@ -425,11 +376,39 @@
         "padding_top": 52,
         "padding_bottom": 52
       }
+    },
+    "cinematic_banner_ridx3a": {
+      "type": "cinematic-banner",
+      "name": "Banner cinemático",
+      "settings": {
+        "heading": "Nueva colección",
+        "text": "Descubre lo último",
+        "button_label": "Comprar ahora",
+        "button_link": "",
+        "banner_width": 1400,
+        "adapt_height": true,
+        "banner_height": 550,
+        "banner_radius": 28
+      }
+    },
+    "cinematic_banner_cMtkAW": {
+      "type": "cinematic-banner",
+      "name": "Banner cinemático",
+      "settings": {
+        "image": "shopify://shop_images/gramata.jpg",
+        "heading": "Black Weekend",
+        "text": "referencias seleccionadas",
+        "button_label": "Comprar ahora",
+        "button_link": "",
+        "banner_width": 1400,
+        "adapt_height": true,
+        "banner_height": 550,
+        "banner_radius": 28
+      }
     }
   },
   "order": [
     "hero_particles",
-    "image_banner_JDh4ea",
     "cinematic_hero",
     "trust_badges",
     "featured_collection",
@@ -439,6 +418,8 @@
     "featured_collection_ChGzhE",
     "cinematic_banner_8czmUr",
     "featured_collection_hLgDKG",
-    "email_signup"
+    "email_signup",
+    "cinematic_banner_ridx3a",
+    "cinematic_banner_cMtkAW"
   ]
 }
