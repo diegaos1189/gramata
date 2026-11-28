@@ -83,7 +83,7 @@
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
   <div
-    class="collection featured-collection--premium{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    class="collection featured-collection--premium{% if section.settings.image_ratio == 'portrait' and section.settings.image_shape == 'default' %} featured-collection--book-covers{% endif %}{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -102,15 +102,13 @@
       {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2
-          class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {%- if section.settings.heading_color != blank %}
-            style="color: {{ section.settings.heading_color }};"
-          {%- endif %}
+          class="title inline-richtext {{ section.settings.heading_size }}{% if section.settings.show_divider %} featured-collection__title--with-lines{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="{% if section.settings.heading_color != blank %}color: {{ section.settings.heading_color }};{% endif %}{% if section.settings.accent_color != blank %}--featured-collection-accent: {{ section.settings.accent_color }};{% endif %}"
         >
-          {{ section.settings.title }}
+          <span>{{ section.settings.title }}</span>
         </h2>
       {%- endif -%}
-      {%- if section.settings.show_divider -%}
+      {%- if section.settings.show_divider and section.settings.title == blank and section.settings.eyebrow != blank -%}
         <div
           class="featured-collection__divider"
           aria-hidden="true"
